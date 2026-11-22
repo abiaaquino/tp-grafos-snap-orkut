@@ -7,16 +7,16 @@
 \toprule
 Tratamento & Descrição & Resultado \\
 \midrule
-Leitura do bruto & com-orkut.ungraph.txt.gz, leitura em streaming (blocos de 5,000,000 linhas) & 4 linhas de comentário; 117,185,083 linhas de aresta \\
-Auditoria de vértices & vértices distintos que aparecem em alguma aresta & 3,072,441 (SNAP: 3,072,441; ids 1–3,072,626) \\
-Auditoria de arestas & linhas de aresta vs. valor oficial & 117,185,083 (SNAP: 117,185,083) \\
+Leitura do bruto & com-orkut.ungraph.txt.gz, leitura em streaming (blocos de 5.000.000 linhas) & 4 linhas de comentário; 117.185.083 linhas de aresta \\
+Auditoria de vértices & vértices distintos que aparecem em alguma aresta & 3.072.441 (SNAP: 3.072.441; ids 1–3.072.626) \\
+Auditoria de arestas & linhas de aresta vs. valor oficial & 117.185.083 (SNAP: 117.185.083) \\
 Auto-laços & linhas com u = v & 0 \\
 Arestas duplicadas & pares repetidos, considerando (u,v) ≡ (v,u) & 0 \\
 Orientação & linhas com u > v (arquivo grava cada aresta uma vez?) & 0 \\
-Seleção de comunidades & semente aleatória fixa (seed=42) + expansão gulosa por sobreposição |C∩S|/|C|; comunidades com > 2000 nós ignoradas & semente \#933; 51 comunidades selecionadas \\
-Subgrafo induzido & todas as arestas do grafo original com as duas pontas no conjunto & |V|=9,917; |E|=173,413; 1 componentes \\
+Seleção de comunidades & semente aleatória fixa (seed=42) + expansão gulosa por sobreposição |C∩S|/|C|; comunidades com > 2.000 nós ignoradas & semente \#933; 51 comunidades selecionadas \\
+Subgrafo induzido & todas as arestas do grafo original com as duas pontas no conjunto & |V|=9.917; |E|=173.413; 1 componente \\
 Simplificação & remoção de auto-laços e duplicatas; grafo não direcionado, sem pesos & 0 laços; arestas únicas por par \\
-Maior componente conexa & mantida só a LCC (distâncias, diâmetro, small-world) & |V|=9,917; |E|=173,413 \\
+Maior componente conexa & mantida só a LCC (distâncias, diâmetro, small-world) & |V|=9.917; |E|=173.413 \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}

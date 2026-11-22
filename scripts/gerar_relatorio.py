@@ -172,10 +172,18 @@ def main(compilar: bool):
 
     # ------------------------------------------------------------------ tabelas
     t = pd.read_csv(RAIZ / "data" / "processed" / "tabela_tratamentos.csv")
+    for col in t.columns:  # o CSV do tratamento usa separador de milhar inglês: converte para o padrão brasileiro
+        t[col] = (t[col].astype(str).str.replace(r"(?<=\d),(?=\d{3}(?!\d))", ".", regex=True)
+                  .str.replace(r"(?<![\d.,=#])(\d)(\d{3})(?![\d.,])", r"\1.\2", regex=True)
+                  .str.replace(r"\b1 componentes\b", "1 componente", regex=True))
     tabela("tratamentos", t, "Tratamentos aplicados ao com-Orkut, com as contagens após cada passo.", "tab:tratamentos",
            larga=True, alinh="p{3.2cm}p{8.6cm}p{5.2cm}")
     t = pd.read_csv(RES / "parte1_medidas.csv")
-    t["Valor"] = [fmt_num(float(v), 4) if "." in str(v) else fmt_num(int(float(v))) for v in t["Valor"]]
+    inteiras = {"Vértices |V|", "Arestas |E|", "Grau mínimo", "Grau máximo", "Componentes conexas",
+                "Tamanho da maior componente", "Diâmetro", "Raio", "Triângulos"}
+    casas_p1 = {"Grau médio": 2, "Grau mediano": 1, "Comprimento médio dos caminhos": 3}
+    t["Valor"] = [fmt_num(int(round(float(v)))) if m in inteiras else fmt_num(float(v), casas_p1.get(m, 4))
+                  for m, v in zip(t["Medida"], t["Valor"])]
     tabela("parte1", t, r"Medidas estruturais da LCC tratada (distâncias exatas sobre todos os pares).", "tab:parte1")
     t = pd.read_csv(RES / "parte1_distancias.csv")
     tabela("distancias", t, "Distribuição das distâncias (em saltos) entre os pares ordenados de vértices.", "tab:distancias",
