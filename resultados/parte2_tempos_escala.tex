@@ -1,0 +1,60 @@
+\begin{table}[ht]
+\centering
+\caption{Tempo em subgrafos BFS crescentes; 10 repetições por tamanho, IC de 95\% (t-Student).}
+\label{tab:escala}
+\small
+\begin{tabular}{lrrrrrrrl}
+\hline
+Algoritmo & n & m & Repetições & Média (ms) & DP (ms) & IC95 inf. (ms) & IC95 sup. (ms) & Método do IC \\
+\hline
+BFS & 1.000 & 9.305 & 10 & 0,90 & 0,02 & 0,88 & 0,91 & t-Student (9 g.l.) \\
+DFS & 1.000 & 9.305 & 10 & 0,91 & 0,03 & 0,88 & 0,93 & t-Student (9 g.l.) \\
+Euler (verificação) & 1.000 & 9.305 & 10 & 1,23 & 0,68 & 0,74 & 1,72 & t-Student (9 g.l.) \\
+Dijkstra & 1.000 & 9.305 & 10 & 2,72 & 0,24 & 2,54 & 2,89 & t-Student (9 g.l.) \\
+Bellman-Ford & 1.000 & 9.305 & 10 & 6,51 & 1,16 & 5,68 & 7,34 & t-Student (9 g.l.) \\
+Tarjan (pontes/articulações) & 1.000 & 9.305 & 10 & 1,99 & 0,09 & 1,92 & 2,05 & t-Student (9 g.l.) \\
+Prim & 1.000 & 9.305 & 10 & 6,53 & 0,25 & 6,36 & 6,71 & t-Student (9 g.l.) \\
+Kruskal & 1.000 & 9.305 & 10 & 4,48 & 0,26 & 4,29 & 4,67 & t-Student (9 g.l.) \\
+BFS & 2.000 & 24.175 & 10 & 2,11 & 0,24 & 1,94 & 2,29 & t-Student (9 g.l.) \\
+DFS & 2.000 & 24.175 & 10 & 2,20 & 0,14 & 2,10 & 2,30 & t-Student (9 g.l.) \\
+Euler (verificação) & 2.000 & 24.175 & 10 & 2,33 & 0,11 & 2,25 & 2,41 & t-Student (9 g.l.) \\
+Dijkstra & 2.000 & 24.175 & 10 & 7,18 & 1,74 & 5,94 & 8,43 & t-Student (9 g.l.) \\
+Bellman-Ford & 2.000 & 24.175 & 10 & 21,09 & 2,79 & 19,10 & 23,09 & t-Student (9 g.l.) \\
+Tarjan (pontes/articulações) & 2.000 & 24.175 & 10 & 5,01 & 0,33 & 4,77 & 5,24 & t-Student (9 g.l.) \\
+Prim & 2.000 & 24.175 & 10 & 18,98 & 0,59 & 18,56 & 19,39 & t-Student (9 g.l.) \\
+Kruskal & 2.000 & 24.175 & 10 & 12,66 & 0,61 & 12,22 & 13,09 & t-Student (9 g.l.) \\
+BFS & 4.000 & 60.968 & 10 & 5,51 & 0,70 & 5,01 & 6,01 & t-Student (9 g.l.) \\
+DFS & 4.000 & 60.968 & 10 & 5,36 & 0,17 & 5,24 & 5,48 & t-Student (9 g.l.) \\
+Euler (verificação) & 4.000 & 60.968 & 10 & 5,88 & 0,16 & 5,77 & 6,00 & t-Student (9 g.l.) \\
+Dijkstra & 4.000 & 60.968 & 10 & 16,16 & 0,50 & 15,80 & 16,51 & t-Student (9 g.l.) \\
+Bellman-Ford & 4.000 & 60.968 & 10 & 57,11 & 1,13 & 56,30 & 57,92 & t-Student (9 g.l.) \\
+Tarjan (pontes/articulações) & 4.000 & 60.968 & 10 & 11,81 & 0,31 & 11,59 & 12,03 & t-Student (9 g.l.) \\
+Prim & 4.000 & 60.968 & 10 & 64,92 & 3,70 & 62,27 & 67,57 & t-Student (9 g.l.) \\
+Kruskal & 4.000 & 60.968 & 10 & 36,46 & 2,37 & 34,77 & 38,16 & t-Student (9 g.l.) \\
+BFS & 6.000 & 97.680 & 10 & 9,12 & 0,30 & 8,91 & 9,34 & t-Student (9 g.l.) \\
+DFS & 6.000 & 97.680 & 10 & 9,06 & 0,18 & 8,93 & 9,19 & t-Student (9 g.l.) \\
+Euler (verificação) & 6.000 & 97.680 & 10 & 9,79 & 0,24 & 9,62 & 9,96 & t-Student (9 g.l.) \\
+Dijkstra & 6.000 & 97.680 & 10 & 27,23 & 0,93 & 26,56 & 27,90 & t-Student (9 g.l.) \\
+Bellman-Ford & 6.000 & 97.680 & 10 & 80,93 & 1,00 & 80,22 & 81,65 & t-Student (9 g.l.) \\
+Tarjan (pontes/articulações) & 6.000 & 97.680 & 10 & 20,84 & 0,58 & 20,43 & 21,26 & t-Student (9 g.l.) \\
+Prim & 6.000 & 97.680 & 10 & 128,31 & 19,56 & 114,32 & 142,30 & t-Student (9 g.l.) \\
+Kruskal & 6.000 & 97.680 & 10 & 61,32 & 4,59 & 58,04 & 64,61 & t-Student (9 g.l.) \\
+BFS & 8.000 & 138.608 & 10 & 13,41 & 0,41 & 13,12 & 13,70 & t-Student (9 g.l.) \\
+DFS & 8.000 & 138.608 & 10 & 13,56 & 1,59 & 12,42 & 14,69 & t-Student (9 g.l.) \\
+Euler (verificação) & 8.000 & 138.608 & 10 & 16,90 & 4,91 & 13,39 & 20,41 & t-Student (9 g.l.) \\
+Dijkstra & 8.000 & 138.608 & 10 & 41,72 & 2,07 & 40,24 & 43,20 & t-Student (9 g.l.) \\
+Bellman-Ford & 8.000 & 138.608 & 10 & 120,30 & 2,55 & 118,47 & 122,12 & t-Student (9 g.l.) \\
+Tarjan (pontes/articulações) & 8.000 & 138.608 & 10 & 29,60 & 0,95 & 28,92 & 30,28 & t-Student (9 g.l.) \\
+Prim & 8.000 & 138.608 & 10 & 183,31 & 5,44 & 179,42 & 187,21 & t-Student (9 g.l.) \\
+Kruskal & 8.000 & 138.608 & 10 & 92,45 & 9,12 & 85,93 & 98,97 & t-Student (9 g.l.) \\
+BFS & 9.917 & 173.413 & 10 & 19,88 & 3,61 & 17,30 & 22,46 & t-Student (9 g.l.) \\
+DFS & 9.917 & 173.413 & 10 & 19,00 & 3,97 & 16,16 & 21,85 & t-Student (9 g.l.) \\
+Euler (verificação) & 9.917 & 173.413 & 10 & 19,11 & 1,51 & 18,04 & 20,19 & t-Student (9 g.l.) \\
+Dijkstra & 9.917 & 173.413 & 10 & 52,46 & 2,01 & 51,02 & 53,90 & t-Student (9 g.l.) \\
+Bellman-Ford & 9.917 & 173.413 & 10 & 154,25 & 4,09 & 151,32 & 157,18 & t-Student (9 g.l.) \\
+Tarjan (pontes/articulações) & 9.917 & 173.413 & 10 & 38,27 & 3,26 & 35,94 & 40,60 & t-Student (9 g.l.) \\
+Prim & 9.917 & 173.413 & 10 & 258,73 & 27,11 & 239,34 & 278,12 & t-Student (9 g.l.) \\
+Kruskal & 9.917 & 173.413 & 10 & 126,66 & 10,05 & 119,47 & 133,85 & t-Student (9 g.l.) \\
+\hline
+\end{tabular}
+\end{table}

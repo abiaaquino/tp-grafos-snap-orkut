@@ -1,0 +1,105 @@
+{
+  "C": 0.37030433808576263,
+  "L": 3.7640569408624867,
+  "k_medio": 34.9728748613492,
+  "instancias": [
+    {
+      "modelo": "Erdős–Rényi G(n,m)",
+      "seed": 42,
+      "C": 0.003528487972953533,
+      "L": 2.8957927591770876,
+      "componentes": 1
+    },
+    {
+      "modelo": "Erdős–Rényi G(n,m)",
+      "seed": 43,
+      "C": 0.0035501949221394325,
+      "L": 2.895870108914885,
+      "componentes": 1
+    },
+    {
+      "modelo": "Erdős–Rényi G(n,m)",
+      "seed": 44,
+      "C": 0.003490565756579428,
+      "L": 2.8964674263816055,
+      "componentes": 1
+    },
+    {
+      "modelo": "Erdős–Rényi G(n,m)",
+      "seed": 45,
+      "C": 0.0035355900775629005,
+      "L": 2.8963172650262203,
+      "componentes": 1
+    },
+    {
+      "modelo": "Erdős–Rényi G(n,m)",
+      "seed": 46,
+      "C": 0.0035127498320850882,
+      "L": 2.8973223073820087,
+      "componentes": 1
+    },
+    {
+      "modelo": "Configuração (trocas duplas, graus preservados)",
+      "seed": 42,
+      "C": 0.0109944856991772,
+      "L": 2.936051432029044,
+      "componentes": 1,
+      "trocas_realizadas": 867065
+    },
+    {
+      "modelo": "Configuração (trocas duplas, graus preservados)",
+      "seed": 43,
+      "C": 0.010596012810449348,
+      "L": 2.9353707139975795,
+      "componentes": 1,
+      "trocas_realizadas": 867065
+    },
+    {
+      "modelo": "Configuração (trocas duplas, graus preservados)",
+      "seed": 44,
+      "C": 0.010711037062505962,
+      "L": 2.9304193223073822,
+      "componentes": 1,
+      "trocas_realizadas": 867065
+    }
+  ],
+  "analitico_er": {
+    "C_rand_analitico": 0.003526557916844731,
+    "L_rand_analitico": 2.588779682991929
+  },
+  "fontes_amostradas_L_nulos": 1000,
+  "Erdős–Rényi G(n,m)": {
+    "C": 0.37030433808576263,
+    "L": 3.7640569408624867,
+    "C_rand": 0.0035235177122640766,
+    "L_rand": 2.8963539733763612,
+    "C_latt": 0.7279235639297258,
+    "gamma_C_sobre_Crand": 105.09506928172055,
+    "lambda_L_sobre_Lrand": 1.299584572694552,
+    "sigma": 80.8682031857434,
+    "omega": 0.26076344557737285,
+    "criterio_L_proximo": true,
+    "criterio_C_muito_maior": true,
+    "small_world": true,
+    "instancias": 5,
+    "C_rand_dp": 2.2824863904059076e-05,
+    "L_rand_dp": 0.0006125716342617173
+  },
+  "Configuração (trocas duplas, graus preservados)": {
+    "C": 0.37030433808576263,
+    "L": 3.7640569408624867,
+    "C_rand": 0.010767178524044171,
+    "L_rand": 2.9339471561113353,
+    "C_latt": 0.7279235639297258,
+    "gamma_C_sobre_Crand": 34.39195674696361,
+    "lambda_L_sobre_Lrand": 1.2829327661958922,
+    "sigma": 26.80729470254427,
+    "omega": 0.2707508563221105,
+    "criterio_L_proximo": true,
+    "criterio_C_muito_maior": true,
+    "small_world": true,
+    "instancias": 3,
+    "C_rand_dp": 0.00020508305278719256,
+    "L_rand_dp": 0.0030740938129513264
+  }
+}

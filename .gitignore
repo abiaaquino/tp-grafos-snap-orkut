@@ -1,0 +1,19 @@
+# Dados brutos do SNAP (centenas de MB) — não versionar
+data/raw/
+*.txt.gz
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# pacote temporário de transferência
+*.tgz

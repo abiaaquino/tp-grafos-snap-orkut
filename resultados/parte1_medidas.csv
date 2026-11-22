@@ -1,0 +1,16 @@
+Medida,Valor
+Vértices |V|,9917.0
+Arestas |E|,173413.0
+Grau mínimo,1.0
+Grau máximo,250.0
+Grau médio,34.9728748613492
+Grau mediano,26.0
+Densidade,0.0035269135600392494
+Componentes conexas,1.0
+Tamanho da maior componente,9917.0
+Diâmetro,9.0
+Raio,5.0
+Comprimento médio dos caminhos,3.7640569408624867
+Triângulos,1158975.0
+Clusterização média,0.37030433808576263
+Transitividade (global),0.3276221075912726

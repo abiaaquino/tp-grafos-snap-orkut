@@ -1,0 +1,957 @@
+{
+  "maquina": {
+    "python": "3.13.18",
+    "so": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "nucleos_logicos": 2
+  },
+  "pesos": {
+    "definicao": "w(u,v) = 1/(1 + |N(u) ∩ N(v)|) (embeddedness); peso unitário usado para validar contra BFS",
+    "w_min": 0.006097560975609756,
+    "w_mediana": 0.0625,
+    "w_max": 1.0,
+    "frac_w_igual_1": 0.03451875003604113
+  },
+  "execucao": {
+    "fonte": 0,
+    "fonte_id_original": 99,
+    "bfs": {
+      "alcancados": 9917,
+      "excentricidade_fonte": 7,
+      "vertices_por_nivel": [
+        1,
+        113,
+        404,
+        2495,
+        5989,
+        876,
+        38,
+        1
+      ],
+      "confere_igraph": true
+    },
+    "dfs": {
+      "alcancados": 9917,
+      "profundidade_max_arvore": 8043
+    },
+    "euler": {
+      "conexo": true,
+      "n_impares": 4930,
+      "euleriano": false,
+      "semi_euleriano": false
+    },
+    "dijkstra_unitario_igual_bfs": true,
+    "dijkstra_ponderado": {
+      "dist_max": 3.283643997423801,
+      "dist_media": 0.3079372901878151,
+      "saltos_medios_no_caminho_ponderado": 6.785923162246648,
+      "saltos_max": 12
+    },
+    "bellman_ford": {
+      "rodadas_ate_convergir": 8,
+      "limite_teorico_n_menos_1": 9916,
+      "ciclo_negativo": false,
+      "igual_dijkstra": true
+    },
+    "tarjan": {
+      "pontes": 138,
+      "pontos_articulacao": 136,
+      "confere_networkx": true,
+      "pontes_com_folha": 134
+    },
+    "agm": {
+      "peso_prim": 1183.4866797074496,
+      "peso_kruskal": 1183.48667970745,
+      "peso_igraph": 1183.4866797074337,
+      "arestas": 9916,
+      "prim_igual_kruskal": true,
+      "confere_igraph": true,
+      "frac_arestas_peso_1_na_agm": 0.035296490520371114
+    },
+    "bellman_ford_demo_ciclo_negativo": {
+      "n": 1000,
+      "m": 9305,
+      "aresta_negativa": -0.5,
+      "detectou": true,
+      "rodadas": 999
+    }
+  },
+  "tempos_grafo_completo": [
+    {
+      "Algoritmo": "BFS",
+      "Complexidade": "O(n+m)",
+      "Repetições": 30,
+      "Média (ms)": 14.545301733323868,
+      "DP (ms)": 2.6060582534498793,
+      "IC95 inf. (ms)": 13.61275290027221,
+      "IC95 sup. (ms)": 15.477850566375524,
+      "Método do IC": "Normal (z)"
+    },
+    {
+      "Algoritmo": "DFS",
+      "Complexidade": "O(n+m)",
+      "Repetições": 30,
+      "Média (ms)": 13.764408133351935,
+      "DP (ms)": 1.233490233789294,
+      "IC95 inf. (ms)": 13.323017432826314,
+      "IC95 sup. (ms)": 14.205798833877557,
+      "Método do IC": "Normal (z)"
+    },
+    {
+      "Algoritmo": "Euler (verificação)",
+      "Complexidade": "O(n+m)",
+      "Repetições": 30,
+      "Média (ms)": 14.447520733347119,
+      "DP (ms)": 0.7083686503592892,
+      "IC95 inf. (ms)": 14.194038925183985,
+      "IC95 sup. (ms)": 14.701002541510253,
+      "Método do IC": "Normal (z)"
+    },
+    {
+      "Algoritmo": "Dijkstra",
+      "Complexidade": "O((n+m) log n)",
+      "Repetições": 30,
+      "Média (ms)": 62.274190833348555,
+      "DP (ms)": 7.316318791681985,
+      "IC95 inf. (ms)": 59.656127886219515,
+      "IC95 sup. (ms)": 64.8922537804776,
+      "Método do IC": "Normal (z)"
+    },
+    {
+      "Algoritmo": "Bellman-Ford",
+      "Complexidade": "O(n·m) [efetivo O(k·m)]",
+      "Repetições": 30,
+      "Média (ms)": 161.38127213334883,
+      "DP (ms)": 10.043705778050324,
+      "IC95 inf. (ms)": 157.78724422148767,
+      "IC95 sup. (ms)": 164.97530004521,
+      "Método do IC": "Normal (z)"
+    },
+    {
+      "Algoritmo": "Tarjan (pontes/articulações)",
+      "Complexidade": "O(n+m)",
+      "Repetições": 30,
+      "Média (ms)": 31.9714925666555,
+      "DP (ms)": 1.577262910662419,
+      "IC95 inf. (ms)": 31.4070866540836,
+      "IC95 sup. (ms)": 32.53589847922739,
+      "Método do IC": "Normal (z)"
+    },
+    {
+      "Algoritmo": "Prim",
+      "Complexidade": "O(m log n)",
+      "Repetições": 30,
+      "Média (ms)": 259.6423964666731,
+      "DP (ms)": 7.970374920386238,
+      "IC95 inf. (ms)": 256.79028684051616,
+      "IC95 sup. (ms)": 262.49450609283014,
+      "Método do IC": "Normal (z)"
+    },
+    {
+      "Algoritmo": "Kruskal",
+      "Complexidade": "O(m log m)",
+      "Repetições": 30,
+      "Média (ms)": 125.87174009998611,
+      "DP (ms)": 11.431013902204644,
+      "IC95 inf. (ms)": 121.78127947387132,
+      "IC95 sup. (ms)": 129.9622007261009,
+      "Método do IC": "Normal (z)"
+    }
+  ],
+  "escala": [
+    {
+      "Algoritmo": "BFS",
+      "n": 1000,
+      "m": 9305,
+      "rodadas_BF": 6,
+      "Repetições": 10,
+      "Média (ms)": 0.8971580999514117,
+      "DP (ms)": 0.01914370605002169,
+      "IC95 inf. (ms)": 0.8834635176226564,
+      "IC95 sup. (ms)": 0.9108526822801671,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "DFS",
+      "n": 1000,
+      "m": 9305,
+      "rodadas_BF": 6,
+      "Repetições": 10,
+      "Média (ms)": 0.9053897999820038,
+      "DP (ms)": 0.030861459266013237,
+      "IC95 inf. (ms)": 0.8833128419677289,
+      "IC95 sup. (ms)": 0.9274667579962786,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Euler (verificação)",
+      "n": 1000,
+      "m": 9305,
+      "rodadas_BF": 6,
+      "Repetições": 10,
+      "Média (ms)": 1.2308415000461537,
+      "DP (ms)": 0.6805193978256561,
+      "IC95 inf. (ms)": 0.7440272491645725,
+      "IC95 sup. (ms)": 1.7176557509277348,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Dijkstra",
+      "n": 1000,
+      "m": 9305,
+      "rodadas_BF": 6,
+      "Repetições": 10,
+      "Média (ms)": 2.7162011999735114,
+      "DP (ms)": 0.24076835990753848,
+      "IC95 inf. (ms)": 2.543965890974423,
+      "IC95 sup. (ms)": 2.8884365089725996,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Bellman-Ford",
+      "n": 1000,
+      "m": 9305,
+      "rodadas_BF": 6,
+      "Repetições": 10,
+      "Média (ms)": 6.508011500022803,
+      "DP (ms)": 1.1605383278985157,
+      "IC95 inf. (ms)": 5.677812392516953,
+      "IC95 sup. (ms)": 7.338210607528654,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Tarjan (pontes/articulações)",
+      "n": 1000,
+      "m": 9305,
+      "rodadas_BF": 6,
+      "Repetições": 10,
+      "Média (ms)": 1.9892487000106482,
+      "DP (ms)": 0.09043060651420373,
+      "IC95 inf. (ms)": 1.924558541129597,
+      "IC95 sup. (ms)": 2.0539388588917,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Prim",
+      "n": 1000,
+      "m": 9305,
+      "rodadas_BF": 6,
+      "Repetições": 10,
+      "Média (ms)": 6.534416700037582,
+      "DP (ms)": 0.2496051560162634,
+      "IC95 inf. (ms)": 6.355859927915462,
+      "IC95 sup. (ms)": 6.712973472159701,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Kruskal",
+      "n": 1000,
+      "m": 9305,
+      "rodadas_BF": 6,
+      "Repetições": 10,
+      "Média (ms)": 4.481183699954272,
+      "DP (ms)": 0.2614964845882576,
+      "IC95 inf. (ms)": 4.2941203838170106,
+      "IC95 sup. (ms)": 4.6682470160915335,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "BFS",
+      "n": 2000,
+      "m": 24175,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 2.113720200009084,
+      "DP (ms)": 0.24490510503116028,
+      "IC95 inf. (ms)": 1.9385256418175725,
+      "IC95 sup. (ms)": 2.2889147582005953,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "DFS",
+      "n": 2000,
+      "m": 24175,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 2.2011845000179164,
+      "DP (ms)": 0.13616747050525482,
+      "IC95 inf. (ms)": 2.1037761596234255,
+      "IC95 sup. (ms)": 2.2985928404124074,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Euler (verificação)",
+      "n": 2000,
+      "m": 24175,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 2.331302600032359,
+      "DP (ms)": 0.11132191421590298,
+      "IC95 inf. (ms)": 2.2516676999121388,
+      "IC95 sup. (ms)": 2.4109375001525786,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Dijkstra",
+      "n": 2000,
+      "m": 24175,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 7.181452400004673,
+      "DP (ms)": 1.7395702535959887,
+      "IC95 inf. (ms)": 5.937038805673642,
+      "IC95 sup. (ms)": 8.425865994335703,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Bellman-Ford",
+      "n": 2000,
+      "m": 24175,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 21.094526099977884,
+      "DP (ms)": 2.793463154116103,
+      "IC95 inf. (ms)": 19.09620294110633,
+      "IC95 sup. (ms)": 23.092849258849434,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Tarjan (pontes/articulações)",
+      "n": 2000,
+      "m": 24175,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 5.006412499938051,
+      "DP (ms)": 0.33104939551056994,
+      "IC95 inf. (ms)": 4.7695940286421505,
+      "IC95 sup. (ms)": 5.2432309712339515,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Prim",
+      "n": 2000,
+      "m": 24175,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 18.975438300049063,
+      "DP (ms)": 0.5852183120072647,
+      "IC95 inf. (ms)": 18.55679833905417,
+      "IC95 sup. (ms)": 19.394078261043955,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Kruskal",
+      "n": 2000,
+      "m": 24175,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 12.655098899972472,
+      "DP (ms)": 0.6122419069163378,
+      "IC95 inf. (ms)": 12.21712742373522,
+      "IC95 sup. (ms)": 13.093070376209724,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "BFS",
+      "n": 4000,
+      "m": 60968,
+      "rodadas_BF": 9,
+      "Repetições": 10,
+      "Média (ms)": 5.510018799941463,
+      "DP (ms)": 0.7048185131070283,
+      "IC95 inf. (ms)": 5.005822009134374,
+      "IC95 sup. (ms)": 6.0142155907485515,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "DFS",
+      "n": 4000,
+      "m": 60968,
+      "rodadas_BF": 9,
+      "Repetições": 10,
+      "Média (ms)": 5.360505400017246,
+      "DP (ms)": 0.1723652094875904,
+      "IC95 inf. (ms)": 5.237202757061217,
+      "IC95 sup. (ms)": 5.483808042973274,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Euler (verificação)",
+      "n": 4000,
+      "m": 60968,
+      "rodadas_BF": 9,
+      "Repetições": 10,
+      "Média (ms)": 5.884570400030498,
+      "DP (ms)": 0.15920536812621836,
+      "IC95 inf. (ms)": 5.7706817404738056,
+      "IC95 sup. (ms)": 5.998459059587191,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Dijkstra",
+      "n": 4000,
+      "m": 60968,
+      "rodadas_BF": 9,
+      "Repetições": 10,
+      "Média (ms)": 16.15660930001468,
+      "DP (ms)": 0.4967791201451691,
+      "IC95 inf. (ms)": 15.8012349256768,
+      "IC95 sup. (ms)": 16.511983674352557,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Bellman-Ford",
+      "n": 4000,
+      "m": 60968,
+      "rodadas_BF": 9,
+      "Repetições": 10,
+      "Média (ms)": 57.107803100007004,
+      "DP (ms)": 1.1305078934221278,
+      "IC95 inf. (ms)": 56.29908647119313,
+      "IC95 sup. (ms)": 57.91651972882087,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Tarjan (pontes/articulações)",
+      "n": 4000,
+      "m": 60968,
+      "rodadas_BF": 9,
+      "Repetições": 10,
+      "Média (ms)": 11.808430100018086,
+      "DP (ms)": 0.3066947412161918,
+      "IC95 inf. (ms)": 11.589033898864196,
+      "IC95 sup. (ms)": 12.027826301171975,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Prim",
+      "n": 4000,
+      "m": 60968,
+      "rodadas_BF": 9,
+      "Repetições": 10,
+      "Média (ms)": 64.92088780000813,
+      "DP (ms)": 3.7001023184728177,
+      "IC95 inf. (ms)": 62.27399405369053,
+      "IC95 sup. (ms)": 67.56778154632573,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Kruskal",
+      "n": 4000,
+      "m": 60968,
+      "rodadas_BF": 9,
+      "Repetições": 10,
+      "Média (ms)": 36.46045669997875,
+      "DP (ms)": 2.3698340685318007,
+      "IC95 inf. (ms)": 34.765179533049974,
+      "IC95 sup. (ms)": 38.15573386690753,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "BFS",
+      "n": 6000,
+      "m": 97680,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 9.12314520005566,
+      "DP (ms)": 0.2979301953034189,
+      "IC95 inf. (ms)": 8.91001877734817,
+      "IC95 sup. (ms)": 9.33627162276315,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "DFS",
+      "n": 6000,
+      "m": 97680,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 9.061083799997505,
+      "DP (ms)": 0.1769070538255959,
+      "IC95 inf. (ms)": 8.934532117328441,
+      "IC95 sup. (ms)": 9.18763548266657,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Euler (verificação)",
+      "n": 6000,
+      "m": 97680,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 9.787558200014246,
+      "DP (ms)": 0.2403070596868987,
+      "IC95 inf. (ms)": 9.615652885313718,
+      "IC95 sup. (ms)": 9.959463514714773,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Dijkstra",
+      "n": 6000,
+      "m": 97680,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 27.230225299990707,
+      "DP (ms)": 0.9306348660229289,
+      "IC95 inf. (ms)": 26.56448922164412,
+      "IC95 sup. (ms)": 27.895961378337294,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Bellman-Ford",
+      "n": 6000,
+      "m": 97680,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 80.93486069994924,
+      "DP (ms)": 0.9962398408887086,
+      "IC95 inf. (ms)": 80.22219364976638,
+      "IC95 sup. (ms)": 81.6475277501321,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Tarjan (pontes/articulações)",
+      "n": 6000,
+      "m": 97680,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 20.84210749999329,
+      "DP (ms)": 0.581386678721757,
+      "IC95 inf. (ms)": 20.42620852433033,
+      "IC95 sup. (ms)": 21.258006475656245,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Prim",
+      "n": 6000,
+      "m": 97680,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 128.30902090001928,
+      "DP (ms)": 19.559661059746,
+      "IC95 inf. (ms)": 114.31688228248449,
+      "IC95 sup. (ms)": 142.30115951755405,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Kruskal",
+      "n": 6000,
+      "m": 97680,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 61.321513299981234,
+      "DP (ms)": 4.5900325686583,
+      "IC95 inf. (ms)": 58.038001803361254,
+      "IC95 sup. (ms)": 64.60502479660121,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "BFS",
+      "n": 8000,
+      "m": 138608,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 13.408208399960131,
+      "DP (ms)": 0.4064836808949228,
+      "IC95 inf. (ms)": 13.117427491667572,
+      "IC95 sup. (ms)": 13.698989308252688,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "DFS",
+      "n": 8000,
+      "m": 138608,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 13.556650200007425,
+      "DP (ms)": 1.5897642579415483,
+      "IC95 inf. (ms)": 12.41940135922361,
+      "IC95 sup. (ms)": 14.693899040791242,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Euler (verificação)",
+      "n": 8000,
+      "m": 138608,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 16.899975299998005,
+      "DP (ms)": 4.911279504782111,
+      "IC95 inf. (ms)": 13.386657589099935,
+      "IC95 sup. (ms)": 20.413293010896073,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Dijkstra",
+      "n": 8000,
+      "m": 138608,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 41.718932500020856,
+      "DP (ms)": 2.0720347465473035,
+      "IC95 inf. (ms)": 40.23668813466707,
+      "IC95 sup. (ms)": 43.20117686537465,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Bellman-Ford",
+      "n": 8000,
+      "m": 138608,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 120.29527899999266,
+      "DP (ms)": 2.547947311734332,
+      "IC95 inf. (ms)": 118.47258729449412,
+      "IC95 sup. (ms)": 122.11797070549122,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Tarjan (pontes/articulações)",
+      "n": 8000,
+      "m": 138608,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 29.60248139995656,
+      "DP (ms)": 0.9523579135866685,
+      "IC95 inf. (ms)": 28.921205589516525,
+      "IC95 sup. (ms)": 30.283757210396598,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Prim",
+      "n": 8000,
+      "m": 138608,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 183.31397640001796,
+      "DP (ms)": 5.443833934439085,
+      "IC95 inf. (ms)": 179.4196922000595,
+      "IC95 sup. (ms)": 187.20826059997643,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Kruskal",
+      "n": 8000,
+      "m": 138608,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 92.44798210008867,
+      "DP (ms)": 9.116443373544643,
+      "IC95 inf. (ms)": 85.926471374933,
+      "IC95 sup. (ms)": 98.96949282524433,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "BFS",
+      "n": 9917,
+      "m": 173413,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 19.878048700002182,
+      "DP (ms)": 3.607566012023304,
+      "IC95 inf. (ms)": 17.297351439556262,
+      "IC95 sup. (ms)": 22.458745960448105,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "DFS",
+      "n": 9917,
+      "m": 173413,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 19.00170189999244,
+      "DP (ms)": 3.9747224030535273,
+      "IC95 inf. (ms)": 16.158356779651786,
+      "IC95 sup. (ms)": 21.845047020333094,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Euler (verificação)",
+      "n": 9917,
+      "m": 173413,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 19.114185000012185,
+      "DP (ms)": 1.5068583224269554,
+      "IC95 inf. (ms)": 18.03624349274469,
+      "IC95 sup. (ms)": 20.192126507279678,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Dijkstra",
+      "n": 9917,
+      "m": 173413,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 52.46356219995505,
+      "DP (ms)": 2.0132440469811512,
+      "IC95 inf. (ms)": 51.023374167542755,
+      "IC95 sup. (ms)": 53.90375023236735,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Bellman-Ford",
+      "n": 9917,
+      "m": 173413,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 154.24968540000918,
+      "DP (ms)": 4.0906379687461465,
+      "IC95 inf. (ms)": 151.32341927924082,
+      "IC95 sup. (ms)": 157.17595152077757,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Tarjan (pontes/articulações)",
+      "n": 9917,
+      "m": 173413,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 38.27110610000091,
+      "DP (ms)": 3.260558777053762,
+      "IC95 inf. (ms)": 35.938642861512236,
+      "IC95 sup. (ms)": 40.603569338489585,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Prim",
+      "n": 9917,
+      "m": 173413,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 258.7260115000163,
+      "DP (ms)": 27.105091495925404,
+      "IC95 inf. (ms)": 239.3361971114393,
+      "IC95 sup. (ms)": 278.11582588859324,
+      "Método do IC": "t-Student (9 g.l.)"
+    },
+    {
+      "Algoritmo": "Kruskal",
+      "n": 9917,
+      "m": 173413,
+      "rodadas_BF": 8,
+      "Repetições": 10,
+      "Média (ms)": 126.6623908000156,
+      "DP (ms)": 10.04973399898463,
+      "IC95 inf. (ms)": 119.47324418067376,
+      "IC95 sup. (ms)": 133.85153741935744,
+      "Método do IC": "t-Student (9 g.l.)"
+    }
+  ],
+  "ajustes": [
+    {
+      "Algoritmo": "BFS",
+      "f(n,m)": "O(n+m)",
+      "c": 9.847425842142545e-05,
+      "R² (c·f)": 0.9748105872653215,
+      "a (ms/vértice)": -0.0014091522713793581,
+      "b (ms/aresta)": 0.00018712435905625147,
+      "R² (a·n+b·m)": 0.9824480807994953
+    },
+    {
+      "Algoritmo": "DFS",
+      "f(n,m)": "O(n+m)",
+      "c": 9.631987008438804e-05,
+      "R² (c·f)": 0.9839882174318287,
+      "a (ms/vértice)": -0.001184434367600511,
+      "b (ms/aresta)": 0.0001716296300381673,
+      "R² (a·n+b·m)": 0.989913012371103
+    },
+    {
+      "Algoritmo": "Euler (verificação)",
+      "f(n,m)": "O(n+m)",
+      "c": 0.00010516631384400591,
+      "R² (c·f)": 0.9836680402267992,
+      "a (ms/vértice)": -0.0010704669006515806,
+      "b (ms/aresta)": 0.00017429484184122105,
+      "R² (a·n+b·m)": 0.9880109252541809
+    },
+    {
+      "Algoritmo": "Dijkstra",
+      "f(n,m)": "O((n+m) log n)",
+      "c": 2.1574106089270958e-05,
+      "R² (c·f)": 0.9985373777652121,
+      "a (ms/vértice)": -0.0018655473190525827,
+      "b (ms/aresta)": 0.00040587653201681217,
+      "R² (a·n+b·m)": 0.9973532331788378
+    },
+    {
+      "Algoritmo": "Bellman-Ford",
+      "f(n,m)": "O(n·m) [efetivo O(k·m)]",
+      "c": 5.4354403653847376e-05,
+      "R² (c·f)": 0.9978698612835833,
+      "a (ms/vértice)": -0.0010581075498622098,
+      "b (ms/aresta)": 0.000938291576651407,
+      "R² (a·n+b·m)": 0.9973189800473615
+    },
+    {
+      "Algoritmo": "Tarjan (pontes/articulações)",
+      "f(n,m)": "O(n+m)",
+      "c": 0.0002037073609598762,
+      "R² (c·f)": 0.9968984631536418,
+      "a (ms/vértice)": -0.0010720429335846773,
+      "b (ms/aresta)": 0.0002787228835450538,
+      "R² (a·n+b·m)": 0.9983043526806279
+    },
+    {
+      "Algoritmo": "Prim",
+      "f(n,m)": "O(m log n)",
+      "c": 0.00010666960661026062,
+      "R² (c·f)": 0.9894863578544122,
+      "a (ms/vértice)": -0.028514784571179123,
+      "b (ms/aresta)": 0.003057135331574602,
+      "R² (a·n+b·m)": 0.992137745153251
+    },
+    {
+      "Algoritmo": "Kruskal",
+      "f(n,m)": "O(m log m)",
+      "c": 4.0229820342525745e-05,
+      "R² (c·f)": 0.9947824592245732,
+      "a (ms/vértice)": -0.009762624754422923,
+      "b (ms/aresta)": 0.0012595255147798082,
+      "R² (a·n+b·m)": 0.9944353903374995
+    }
+  ],
+  "floyd_warshall": {
+    "validacao": {
+      "n": 150,
+      "numpy_igual_python": true,
+      "igual_dijkstra_todas_fontes": true
+    },
+    "medicoes": [
+      {
+        "Versão": "Floyd-Warshall (numpy)",
+        "n": 200,
+        "m": 965,
+        "Repetições": 10,
+        "Média (ms)": 10.181216199998744,
+        "DP (ms)": 0.6927014092864536,
+        "IC95 inf. (ms)": 9.685687463090066,
+        "IC95 sup. (ms)": 10.67674493690742,
+        "Método do IC": "t-Student (9 g.l.)"
+      },
+      {
+        "Versão": "Floyd-Warshall (numpy)",
+        "n": 400,
+        "m": 3503,
+        "Repetições": 10,
+        "Média (ms)": 97.93490410004324,
+        "DP (ms)": 2.8407518986195415,
+        "IC95 inf. (ms)": 95.90275261121647,
+        "IC95 sup. (ms)": 99.96705558887001,
+        "Método do IC": "t-Student (9 g.l.)"
+      },
+      {
+        "Versão": "Floyd-Warshall (numpy)",
+        "n": 600,
+        "m": 4936,
+        "Repetições": 10,
+        "Média (ms)": 383.6819430999867,
+        "DP (ms)": 22.329671556126186,
+        "IC95 inf. (ms)": 367.7082583442551,
+        "IC95 sup. (ms)": 399.6556278557183,
+        "Método do IC": "t-Student (9 g.l.)"
+      },
+      {
+        "Versão": "Floyd-Warshall (numpy)",
+        "n": 800,
+        "m": 6637,
+        "Repetições": 10,
+        "Média (ms)": 935.1306439999917,
+        "DP (ms)": 37.13710656232096,
+        "IC95 inf. (ms)": 908.5643583528669,
+        "IC95 sup. (ms)": 961.6969296471165,
+        "Método do IC": "t-Student (9 g.l.)"
+      },
+      {
+        "Versão": "Floyd-Warshall (numpy)",
+        "n": 1000,
+        "m": 9305,
+        "Repetições": 10,
+        "Média (ms)": 1731.4011248999805,
+        "DP (ms)": 43.25082730962303,
+        "IC95 inf. (ms)": 1700.461346895097,
+        "IC95 sup. (ms)": 1762.340902904864,
+        "Método do IC": "t-Student (9 g.l.)"
+      },
+      {
+        "Versão": "Floyd-Warshall (numpy)",
+        "n": 1200,
+        "m": 11807,
+        "Repetições": 10,
+        "Média (ms)": 2696.938864100048,
+        "DP (ms)": 120.91838332686817,
+        "IC95 inf. (ms)": 2610.439063528365,
+        "IC95 sup. (ms)": 2783.4386646717307,
+        "Método do IC": "t-Student (9 g.l.)"
+      },
+      {
+        "Versão": "Floyd-Warshall (Python)",
+        "n": 50,
+        "m": 201,
+        "Repetições": 10,
+        "Média (ms)": 3.679582700010542,
+        "DP (ms)": 0.16933812131207063,
+        "IC95 inf. (ms)": 3.558445505485854,
+        "IC95 sup. (ms)": 3.80071989453523,
+        "Método do IC": "t-Student (9 g.l.)"
+      },
+      {
+        "Versão": "Floyd-Warshall (Python)",
+        "n": 100,
+        "m": 426,
+        "Repetições": 10,
+        "Média (ms)": 25.705037599959724,
+        "DP (ms)": 0.7908998258014788,
+        "IC95 inf. (ms)": 25.139261947641643,
+        "IC95 sup. (ms)": 26.270813252277808,
+        "Método do IC": "t-Student (9 g.l.)"
+      },
+      {
+        "Versão": "Floyd-Warshall (Python)",
+        "n": 150,
+        "m": 685,
+        "Repetições": 10,
+        "Média (ms)": 85.88365879995763,
+        "DP (ms)": 2.730136988142508,
+        "IC95 inf. (ms)": 83.93063645124393,
+        "IC95 sup. (ms)": 87.83668114867133,
+        "Método do IC": "t-Student (9 g.l.)"
+      },
+      {
+        "Versão": "Floyd-Warshall (Python)",
+        "n": 200,
+        "m": 965,
+        "Repetições": 10,
+        "Média (ms)": 203.6875823000173,
+        "DP (ms)": 2.830966622115147,
+        "IC95 inf. (ms)": 201.6624307763148,
+        "IC95 sup. (ms)": 205.71273382371984,
+        "Método do IC": "t-Student (9 g.l.)"
+      },
+      {
+        "Versão": "Floyd-Warshall (Python)",
+        "n": 250,
+        "m": 1304,
+        "Repetições": 10,
+        "Média (ms)": 470.29889589998675,
+        "DP (ms)": 35.19081358152664,
+        "IC95 inf. (ms)": 445.1249043777154,
+        "IC95 sup. (ms)": 495.4728874222581,
+        "Método do IC": "t-Student (9 g.l.)"
+      }
+    ],
+    "ajustes": {
+      "Floyd-Warshall (numpy)": {
+        "c_s_por_n3": 1.6189378031196634e-09,
+        "r2": 0.9936931063286097,
+        "estimativa_grafo_completo_s": 1578.959912010165
+      },
+      "Floyd-Warshall (Python)": {
+        "c_s_por_n3": 2.899402229619225e-08,
+        "r2": 0.9914382373468493,
+        "estimativa_grafo_completo_s": 28278.04675719999
+      }
+    },
+    "memoria_matriz_grafo_completo_MB": 750.3272171020508,
+    "operacoes_grafo_completo": 975306098213
+  }
+}

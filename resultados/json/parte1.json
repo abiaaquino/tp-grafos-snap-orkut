@@ -1,0 +1,43 @@
+{
+  "vertices": 9917,
+  "arestas": 173413,
+  "grau_min": 1,
+  "grau_max": 250,
+  "grau_medio": 34.9728748613492,
+  "grau_mediano": 26.0,
+  "grau_desvio": 30.858595150278965,
+  "densidade": 0.0035269135600392494,
+  "n_componentes": 1,
+  "tamanhos_componentes": [
+    9917
+  ],
+  "diametro": 9,
+  "raio": 5,
+  "caminho_medio": 3.7640569408624867,
+  "pares_ordenados": 98336972,
+  "distancias_exatas": true,
+  "hist_distancias": [
+    0,
+    346826,
+    4518360,
+    29373624,
+    49125656,
+    13757612,
+    1155618,
+    57110,
+    2112,
+    54
+  ],
+  "segundos_distancias": 13.029368114999897,
+  "validacao_bfs_propria_20_fontes": true,
+  "triangulos": 1158975,
+  "clusterizacao_media": 0.37030433808576263,
+  "transitividade": 0.3276221075912726,
+  "segundos_triangulos": 0.48746579900011966,
+  "conferencia_igraph": {
+    "transitividade": 0.3276221075912726,
+    "clusterizacao_media": 0.3703043380857635
+  },
+  "centro_tamanho": 1,
+  "periferia_tamanho": 26
+}

@@ -1,0 +1,92 @@
+{
+  "Subgrafo G27 (LCC, 9.917 vértices)": {
+    "regressao_bruta": {
+      "gamma": 1.6115852287594035,
+      "intercepto": 0.17974877527422528,
+      "r2": 0.738816225144103,
+      "pontos": 201
+    },
+    "regressao_bins_log": {
+      "gamma": 0.9397499040536763,
+      "intercepto": -1.001248846917471,
+      "r2": 0.5709623891898767,
+      "pontos": 21
+    },
+    "regressao_ccdf": {
+      "inclinacao": -1.851711583398438,
+      "gamma": 2.851711583398438,
+      "r2": 0.7446741796206672
+    },
+    "mle": {
+      "gamma": 5.997376803044935,
+      "kmin": 119.0,
+      "ks": 0.05711468807399467,
+      "n_cauda": 259,
+      "erro_padrao": 0.31052188547278564,
+      "loglik": -1130.848759372595,
+      "candidatos_testados": 69
+    },
+    "vs_exponencial": {
+      "lambda_exp": 0.03524414030479568,
+      "R": -5.362251954510169,
+      "z_vuong": -2.9127114836645616,
+      "p_valor": 0.0035830548482244924,
+      "favorece": "exponencial",
+      "significativo": true
+    },
+    "vs_poisson": {
+      "lambda": 34.9728748613492,
+      "ks_poisson": 0.43646732119461185,
+      "loglik_poisson": -139917.0030711511,
+      "loglik_lei_potencia_kmin1": -54194.466451048145,
+      "gamma_kmin1": 1.2714228535701964,
+      "favorece": "lei de potência"
+    }
+  },
+  "Orkut completo (3.072.441 vértices)": {
+    "regressao_bruta": {
+      "gamma": 2.1272581122550407,
+      "intercepto": 1.1183803332839615,
+      "r2": 0.8431525770252533,
+      "pontos": 2863
+    },
+    "regressao_bins_log": {
+      "gamma": 1.9201685162945723,
+      "intercepto": 0.0903178413336887,
+      "r2": 0.8902872875334443,
+      "pontos": 24
+    },
+    "regressao_ccdf": {
+      "inclinacao": -1.925445561390121,
+      "gamma": 2.925445561390121,
+      "r2": 0.9674978941807986
+    },
+    "mle": {
+      "gamma": 2.962507259302881,
+      "kmin": 168.0,
+      "ks": 0.015964616648273644,
+      "n_cauda": 289226,
+      "erro_padrao": 0.0036491574832905184,
+      "loglik": -1722724.4624284934,
+      "candidatos_testados": 93
+    },
+    "vs_exponencial": {
+      "lambda_exp": 0.006237884363709088,
+      "R": 34935.43762998603,
+      "z_vuong": 33.90267944287764,
+      "p_valor": 6.082727434337849e-252,
+      "favorece": "lei de potência",
+      "significativo": true
+    },
+    "vs_poisson": {
+      "lambda": 76.28142118921079,
+      "ks_poisson": 0.5784951462403427,
+      "loglik_poisson": -155221170.92496485,
+      "loglik_lei_potencia_kmin1": -18783028.010495637,
+      "gamma_kmin1": 1.2376921263301937,
+      "favorece": "lei de potência"
+    }
+  },
+  "correlacao_spearman_grau_original_vs_sub": 0.6948284062498883,
+  "fracao_media_grau_preservado": 0.40281954161615485
+}

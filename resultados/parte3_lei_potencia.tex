@@ -1,0 +1,14 @@
+\begin{table}[ht]
+\centering
+\caption{Estimativas do expoente da lei de potência P(k) \textasciitilde{} k\^{}(-γ).}
+\label{tab:powerlaw}
+\small
+\begin{tabular}{p{3cm}rrrrrrrrrlrl}
+\hline
+Grafo & γ regressão bruta & R² bruta & γ bins log & R² bins & γ CCDF & γ MLE & k\_min & cauda & KS & vs exp. & p (Vuong) & vs Poisson \\
+\hline
+Subgrafo G27 (LCC, 9.917 vértices) & 1,612 & 0,739 & 0,940 & 0,571 & 2,852 & 5,997 & 119 & 259 & 0,0571 & exponencial & 0,0036 & lei de potência \\
+Orkut completo (3.072.441 vértices) & 2,127 & 0,843 & 1,920 & 0,890 & 2,925 & 2,963 & 168 & 289.226 & 0,0160 & lei de potência & 6,0827e-252 & lei de potência \\
+\hline
+\end{tabular}
+\end{table}

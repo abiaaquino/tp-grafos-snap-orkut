@@ -1,0 +1,105 @@
+{
+  "hubs": [
+    {
+      "id Orkut": "378358",
+      "grau (subgrafo)": 250,
+      "grau (Orkut completo)": 358,
+      "betweenness": 0.0024768420914146444,
+      "PageRank": 0.0003631925064262009,
+      "clusterização local": 0.21445783132530122,
+      "nº comunidades": 2
+    },
+    {
+      "id Orkut": "94761",
+      "grau (subgrafo)": 243,
+      "grau (Orkut completo)": 349,
+      "betweenness": 0.0022924601570068616,
+      "PageRank": 0.00038228709899571466,
+      "clusterização local": 0.16399687106757813,
+      "nº comunidades": 2
+    },
+    {
+      "id Orkut": "171264",
+      "grau (subgrafo)": 239,
+      "grau (Orkut completo)": 355,
+      "betweenness": 0.0016093820462065342,
+      "PageRank": 0.0003416743042086558,
+      "clusterização local": 0.23409866038465596,
+      "nº comunidades": 3
+    },
+    {
+      "id Orkut": "98891",
+      "grau (subgrafo)": 232,
+      "grau (Orkut completo)": 278,
+      "betweenness": 0.0012403520135153298,
+      "PageRank": 0.0003510821502026793,
+      "clusterização local": 0.24231228541573369,
+      "nº comunidades": 2
+    },
+    {
+      "id Orkut": "96420",
+      "grau (subgrafo)": 228,
+      "grau (Orkut completo)": 507,
+      "betweenness": 0.004168097217654923,
+      "PageRank": 0.00037876204813172646,
+      "clusterização local": 0.1742793106113301,
+      "nº comunidades": 1
+    },
+    {
+      "id Orkut": "12173",
+      "grau (subgrafo)": 227,
+      "grau (Orkut completo)": 369,
+      "betweenness": 0.001662377234996805,
+      "PageRank": 0.000328251397329471,
+      "clusterização local": 0.25570153210401153,
+      "nº comunidades": 3
+    },
+    {
+      "id Orkut": "499180",
+      "grau (subgrafo)": 218,
+      "grau (Orkut completo)": 309,
+      "betweenness": 0.0009499944189855667,
+      "PageRank": 0.00030536582433462653,
+      "clusterização local": 0.2666469369635987,
+      "nº comunidades": 3
+    },
+    {
+      "id Orkut": "177048",
+      "grau (subgrafo)": 216,
+      "grau (Orkut completo)": 291,
+      "betweenness": 0.01783577146572592,
+      "PageRank": 0.0007566195440752608,
+      "clusterização local": 0.056459948320413435,
+      "nº comunidades": 1
+    },
+    {
+      "id Orkut": "246019",
+      "grau (subgrafo)": 211,
+      "grau (Orkut completo)": 354,
+      "betweenness": 0.0007252611774388738,
+      "PageRank": 0.00030042478026338947,
+      "clusterização local": 0.2656285262920334,
+      "nº comunidades": 4
+    },
+    {
+      "id Orkut": "24553",
+      "grau (subgrafo)": 203,
+      "grau (Orkut completo)": 299,
+      "betweenness": 0.011100079078534329,
+      "PageRank": 0.000366611426972736,
+      "clusterização local": 0.18075403599473247,
+      "nº comunidades": 5
+    }
+  ],
+  "frac_arestas_intra_comunidade": 0.8742135826033803,
+  "frac_vertices_em_mais_de_1_comunidade": 0.2604618332156902,
+  "spearman_grau_vs_clusterizacao": -0.06184511165499812,
+  "spearman_ncomunidades_vs_betweenness": 0.23586715944626652,
+  "spearman_grau_vs_betweenness": 0.6471014943430661,
+  "betweenness_media_1_comunidade": 0.00021026592735148822,
+  "betweenness_media_2mais_comunidades": 0.000468724530756829,
+  "C_de_k_expoente": 0.19852973962051546,
+  "C_de_k_r2": 0.4128704493975688,
+  "arestas_tocando_top1pct": 0.09382226246013851,
+  "arestas_tocando_top5pct": 0.29805723907665516
+}

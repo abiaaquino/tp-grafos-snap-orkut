@@ -1,0 +1,20 @@
+\begin{table}[ht]
+\centering
+\caption{Tempo de execução no grafo completo (n = 9.917. m = 173.413); 30 repetições. IC de 95\%.}
+\label{tab:tempos}
+\small
+\begin{tabular}{llrrrrrl}
+\hline
+Algoritmo & Complexidade & Repetições & Média (ms) & DP (ms) & IC95 inf. (ms) & IC95 sup. (ms) & Método do IC \\
+\hline
+BFS & O(n+m) & 30 & 14,55 & 2,61 & 13,61 & 15,48 & Normal (z) \\
+DFS & O(n+m) & 30 & 13,76 & 1,23 & 13,32 & 14,21 & Normal (z) \\
+Euler (verificação) & O(n+m) & 30 & 14,45 & 0,71 & 14,19 & 14,70 & Normal (z) \\
+Dijkstra & O((n+m) log n) & 30 & 62,27 & 7,32 & 59,66 & 64,89 & Normal (z) \\
+Bellman-Ford & O(n·m) [efetivo O(k·m)] & 30 & 161,38 & 10,04 & 157,79 & 164,98 & Normal (z) \\
+Tarjan (pontes/articulações) & O(n+m) & 30 & 31,97 & 1,58 & 31,41 & 32,54 & Normal (z) \\
+Prim & O(m log n) & 30 & 259,64 & 7,97 & 256,79 & 262,49 & Normal (z) \\
+Kruskal & O(m log m) & 30 & 125,87 & 11,43 & 121,78 & 129,96 & Normal (z) \\
+\hline
+\end{tabular}
+\end{table}

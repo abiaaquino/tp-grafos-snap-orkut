@@ -1,0 +1,68 @@
+21:28:43 === TP Grafos SNAP — G27 com-Orkut — tratamento ===
+21:28:43 Python 3.10.12 | numpy 2.2.6 | pandas 2.3.3 | networkx 3.4.2 | Linux-6.8.0-149-generic-x86_64-with-glibc2.35
+21:28:43 Arquivo do grafo: com-orkut.ungraph.txt.gz (447,251,958 bytes)
+21:28:43 Arquivo de comunidades: com-orkut.top5000.cmty.txt.gz (3,124,707 bytes)
+21:28:43 Parâmetros: seed=42 alvo=[5000, 10000] tam_max_cmty=2000
+21:28:43 Cabeçalho do arquivo (4 linhas de comentário):
+21:28:43     # Undirected graph: ../../data/output/orkut.txt
+21:28:43     # Orkut
+21:28:43     # Nodes: 3072441 Edges: 117185083
+21:28:43     # FromNodeId	ToNodeId
+21:28:43 Comunidades top5000 lidas: 5000 (tamanho mín=3, mediana=115, máx=4785)
+21:28:45 Comunidade-semente (seed=42): #933 (691 nós)
+21:28:45 Superconjunto: 91 comunidades, 16768 vértices
+21:28:45 Leitura em streaming (blocos de 5,000,000 linhas); buckets temporários em /sessions/rcw-01dvk4py3m9quz7hm9bsb3ow/tmpbk/orkut_buckets_1nhantq2
+21:28:50   bloco   1 | linhas lidas:    5,000,000 | 5s
+21:28:54   bloco   2 | linhas lidas:   10,000,000 | 9s
+21:28:56   bloco   3 | linhas lidas:   15,000,000 | 11s
+21:28:58   bloco   4 | linhas lidas:   20,000,000 | 13s
+21:29:00   bloco   5 | linhas lidas:   25,000,000 | 15s
+21:29:03   bloco   6 | linhas lidas:   30,000,000 | 18s
+21:29:05   bloco   7 | linhas lidas:   35,000,000 | 20s
+21:29:07   bloco   8 | linhas lidas:   40,000,000 | 22s
+21:29:09   bloco   9 | linhas lidas:   45,000,000 | 24s
+21:29:13   bloco  10 | linhas lidas:   50,000,000 | 28s
+21:29:18   bloco  11 | linhas lidas:   55,000,000 | 33s
+21:29:20   bloco  12 | linhas lidas:   60,000,000 | 35s
+21:29:22   bloco  13 | linhas lidas:   65,000,000 | 37s
+21:29:24   bloco  14 | linhas lidas:   70,000,000 | 39s
+21:29:26   bloco  15 | linhas lidas:   75,000,000 | 41s
+21:29:29   bloco  16 | linhas lidas:   80,000,000 | 44s
+21:29:34   bloco  17 | linhas lidas:   85,000,000 | 49s
+21:29:38   bloco  18 | linhas lidas:   90,000,000 | 53s
+21:29:41   bloco  19 | linhas lidas:   95,000,000 | 56s
+21:29:43   bloco  20 | linhas lidas:  100,000,000 | 58s
+21:29:46   bloco  21 | linhas lidas:  105,000,000 | 61s
+21:29:48   bloco  22 | linhas lidas:  110,000,000 | 63s
+21:29:50   bloco  23 | linhas lidas:  115,000,000 | 65s
+21:29:51   bloco  24 | linhas lidas:  117,185,083 | 66s
+21:30:00 Auditoria do grafo original:
+21:30:00     linhas_de_aresta                              117,185,083
+21:30:00     vertices_distintos                            3,072,441
+21:30:00     id_minimo                                     1
+21:30:00     id_maximo                                     3,072,626
+21:30:00     auto_lacos                                    0
+21:30:00     linhas_com_u_maior_que_v                      0
+21:30:00     arestas_nao_direcionadas_unicas_incl_lacos    117,185,083
+21:30:00     linhas_duplicadas_(u,v)_ou_(v,u)              0
+21:30:00     arquivo_ordenado_por_(u,v)                    False
+21:30:00     grau_maximo                                   33,313
+21:30:00     grau_medio                                    76.28142118921079
+21:30:00     grau_mediano                                  45.0
+21:30:00     segundos_leitura                              74.3
+21:30:00     linhas_de_comentario                          4
+21:30:00 Conferência com o SNAP: |V| OK (esperado 3,072,441) | |E| OK (esperado 117,185,083)
+21:30:00 Arestas induzidas no superconjunto (simples, sem laços): 310,649
+21:30:03 Prefixo escolhido: 51 comunidades -> induzido |V|=9,917 |E|=173,413 (1 componentes) -> LCC |V|=9,917 |E|=173,413
+21:30:08 Grafo final: {'vertices': 9917, 'arestas': 173413, 'grau_medio': 34.973, 'grau_max': 250, 'grau_min': 1, 'densidade': 0.0035269135600392494, 'clusterizacao_media': 0.3703, 'componentes': 1, 'auto_lacos': 0}
+21:30:08   saída: log_tratamento.txt                                 3,778 bytes
+21:30:08   saída: orkut_g27_comunidades_selecionadas.csv               820 bytes
+21:30:08   saída: orkut_g27_lcc.edgelist.gz                        609,188 bytes
+21:30:08   saída: orkut_g27_lcc_arestas.csv                      2,419,981 bytes
+21:30:08   saída: orkut_g27_lcc_nos.csv                            251,385 bytes
+21:30:08   saída: orkut_g27_prefixos_avaliados.csv                   1,423 bytes
+21:30:08   saída: resumo_tratamento.json                             2,017 bytes
+21:30:08   saída: resumo_tratamento.md                               3,820 bytes
+21:30:08   saída: tabela_tratamentos.csv                             1,111 bytes
+21:30:08   saída: tabela_tratamentos.tex                             1,409 bytes
+21:30:08 Concluído em 85 s.

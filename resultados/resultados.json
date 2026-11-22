@@ -1,0 +1,985 @@
+{
+  "tratamento": {
+    "grafo": "G27 com-Orkut",
+    "fonte": "https://snap.stanford.edu/data/com-Orkut.html",
+    "parametros": {
+      "grafo": "com-orkut.ungraph.txt.gz",
+      "comunidades": "com-orkut.top5000.cmty.txt.gz",
+      "saida": "data/processed",
+      "seed": 42,
+      "alvo_min": 5000,
+      "alvo_max": 10000,
+      "fator_superconjunto": 1.6,
+      "tam_max_cmty": 2000,
+      "tmp": null,
+      "sem_verificacao": false
+    },
+    "auditoria_original": {
+      "linhas_de_aresta": 117185083,
+      "vertices_distintos": 3072441,
+      "id_minimo": 1,
+      "id_maximo": 3072626,
+      "auto_lacos": 0,
+      "linhas_com_u_maior_que_v": 0,
+      "arestas_nao_direcionadas_unicas_incl_lacos": 117185083,
+      "linhas_duplicadas_(u,v)_ou_(v,u)": 0,
+      "arquivo_ordenado_por_(u,v)": false,
+      "grau_maximo": 33313,
+      "grau_medio": 76.28142118921079,
+      "grau_mediano": 45.0,
+      "segundos_leitura": 74.3,
+      "linhas_de_comentario": 4
+    },
+    "conferencia_snap": {
+      "V_ok": true,
+      "E_ok": true
+    },
+    "selecao": {
+      "comunidade_semente": 933,
+      "k_comunidades": 51,
+      "comunidades": [
+        933,
+        832,
+        71,
+        1627,
+        711,
+        4167,
+        717,
+        607,
+        1910,
+        604,
+        657,
+        658,
+        773,
+        2298,
+        2296,
+        2297,
+        774,
+        772,
+        1763,
+        1760,
+        1943,
+        1759,
+        2030,
+        2271,
+        610,
+        469,
+        1004,
+        768,
+        1882,
+        987,
+        3493,
+        2249,
+        603,
+        4711,
+        204,
+        4059,
+        3852,
+        2135,
+        2134,
+        3816,
+        1638,
+        1637,
+        606,
+        4186,
+        2357,
+        1615,
+        605,
+        611,
+        1663,
+        1662,
+        979
+      ]
+    },
+    "induzido": {
+      "vertices": 9917,
+      "arestas": 173413,
+      "componentes": 1
+    },
+    "final_lcc": {
+      "vertices": 9917,
+      "arestas": 173413,
+      "grau_medio": 34.973,
+      "grau_max": 250,
+      "grau_min": 1,
+      "densidade": 0.0035269135600392494,
+      "clusterizacao_media": 0.3703,
+      "componentes": 1,
+      "auto_lacos": 0
+    },
+    "segundos_total": 85.2
+  },
+  "parte1": {
+    "vertices": 9917,
+    "arestas": 173413,
+    "grau_min": 1,
+    "grau_max": 250,
+    "grau_medio": 34.9728748613492,
+    "grau_mediano": 26.0,
+    "grau_desvio": 30.858595150278965,
+    "densidade": 0.0035269135600392494,
+    "n_componentes": 1,
+    "tamanhos_componentes": [
+      9917
+    ],
+    "diametro": 9,
+    "raio": 5,
+    "caminho_medio": 3.7640569408624867,
+    "pares_ordenados": 98336972,
+    "distancias_exatas": true,
+    "hist_distancias": [
+      0,
+      346826,
+      4518360,
+      29373624,
+      49125656,
+      13757612,
+      1155618,
+      57110,
+      2112,
+      54
+    ],
+    "segundos_distancias": 13.029368114999897,
+    "validacao_bfs_propria_20_fontes": true,
+    "triangulos": 1158975,
+    "clusterizacao_media": 0.37030433808576263,
+    "transitividade": 0.3276221075912726,
+    "segundos_triangulos": 0.48746579900011966,
+    "conferencia_igraph": {
+      "transitividade": 0.3276221075912726,
+      "clusterizacao_media": 0.3703043380857635
+    },
+    "centro_tamanho": 1,
+    "periferia_tamanho": 26
+  },
+  "parte2": {
+    "maquina": {
+      "python": "3.13.18",
+      "so": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+      "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+      "nucleos_logicos": 2
+    },
+    "pesos": {
+      "definicao": "w(u,v) = 1/(1 + |N(u) ∩ N(v)|) (embeddedness); peso unitário usado para validar contra BFS",
+      "w_min": 0.006097560975609756,
+      "w_mediana": 0.0625,
+      "w_max": 1.0,
+      "frac_w_igual_1": 0.03451875003604113
+    },
+    "execucao": {
+      "fonte": 0,
+      "fonte_id_original": 99,
+      "bfs": {
+        "alcancados": 9917,
+        "excentricidade_fonte": 7,
+        "vertices_por_nivel": [
+          1,
+          113,
+          404,
+          2495,
+          5989,
+          876,
+          38,
+          1
+        ],
+        "confere_igraph": true
+      },
+      "dfs": {
+        "alcancados": 9917,
+        "profundidade_max_arvore": 8043
+      },
+      "euler": {
+        "conexo": true,
+        "n_impares": 4930,
+        "euleriano": false,
+        "semi_euleriano": false
+      },
+      "dijkstra_unitario_igual_bfs": true,
+      "dijkstra_ponderado": {
+        "dist_max": 3.283643997423801,
+        "dist_media": 0.3079372901878151,
+        "saltos_medios_no_caminho_ponderado": 6.785923162246648,
+        "saltos_max": 12
+      },
+      "bellman_ford": {
+        "rodadas_ate_convergir": 8,
+        "limite_teorico_n_menos_1": 9916,
+        "ciclo_negativo": false,
+        "igual_dijkstra": true
+      },
+      "tarjan": {
+        "pontes": 138,
+        "pontos_articulacao": 136,
+        "confere_networkx": true,
+        "pontes_com_folha": 134
+      },
+      "agm": {
+        "peso_prim": 1183.4866797074496,
+        "peso_kruskal": 1183.48667970745,
+        "peso_igraph": 1183.4866797074337,
+        "arestas": 9916,
+        "prim_igual_kruskal": true,
+        "confere_igraph": true,
+        "frac_arestas_peso_1_na_agm": 0.035296490520371114
+      },
+      "bellman_ford_demo_ciclo_negativo": {
+        "n": 1000,
+        "m": 9305,
+        "aresta_negativa": -0.5,
+        "detectou": true,
+        "rodadas": 999
+      }
+    },
+    "tempos_grafo_completo": [
+      {
+        "Algoritmo": "BFS",
+        "Complexidade": "O(n+m)",
+        "Repetições": 30,
+        "Média (ms)": 14.545301733323868,
+        "DP (ms)": 2.6060582534498793,
+        "IC95 inf. (ms)": 13.61275290027221,
+        "IC95 sup. (ms)": 15.477850566375524,
+        "Método do IC": "Normal (z)"
+      },
+      {
+        "Algoritmo": "DFS",
+        "Complexidade": "O(n+m)",
+        "Repetições": 30,
+        "Média (ms)": 13.764408133351935,
+        "DP (ms)": 1.233490233789294,
+        "IC95 inf. (ms)": 13.323017432826314,
+        "IC95 sup. (ms)": 14.205798833877557,
+        "Método do IC": "Normal (z)"
+      },
+      {
+        "Algoritmo": "Euler (verificação)",
+        "Complexidade": "O(n+m)",
+        "Repetições": 30,
+        "Média (ms)": 14.447520733347119,
+        "DP (ms)": 0.7083686503592892,
+        "IC95 inf. (ms)": 14.194038925183985,
+        "IC95 sup. (ms)": 14.701002541510253,
+        "Método do IC": "Normal (z)"
+      },
+      {
+        "Algoritmo": "Dijkstra",
+        "Complexidade": "O((n+m) log n)",
+        "Repetições": 30,
+        "Média (ms)": 62.274190833348555,
+        "DP (ms)": 7.316318791681985,
+        "IC95 inf. (ms)": 59.656127886219515,
+        "IC95 sup. (ms)": 64.8922537804776,
+        "Método do IC": "Normal (z)"
+      },
+      {
+        "Algoritmo": "Bellman-Ford",
+        "Complexidade": "O(n·m) [efetivo O(k·m)]",
+        "Repetições": 30,
+        "Média (ms)": 161.38127213334883,
+        "DP (ms)": 10.043705778050324,
+        "IC95 inf. (ms)": 157.78724422148767,
+        "IC95 sup. (ms)": 164.97530004521,
+        "Método do IC": "Normal (z)"
+      },
+      {
+        "Algoritmo": "Tarjan (pontes/articulações)",
+        "Complexidade": "O(n+m)",
+        "Repetições": 30,
+        "Média (ms)": 31.9714925666555,
+        "DP (ms)": 1.577262910662419,
+        "IC95 inf. (ms)": 31.4070866540836,
+        "IC95 sup. (ms)": 32.53589847922739,
+        "Método do IC": "Normal (z)"
+      },
+      {
+        "Algoritmo": "Prim",
+        "Complexidade": "O(m log n)",
+        "Repetições": 30,
+        "Média (ms)": 259.6423964666731,
+        "DP (ms)": 7.970374920386238,
+        "IC95 inf. (ms)": 256.79028684051616,
+        "IC95 sup. (ms)": 262.49450609283014,
+        "Método do IC": "Normal (z)"
+      },
+      {
+        "Algoritmo": "Kruskal",
+        "Complexidade": "O(m log m)",
+        "Repetições": 30,
+        "Média (ms)": 125.87174009998611,
+        "DP (ms)": 11.431013902204644,
+        "IC95 inf. (ms)": 121.78127947387132,
+        "IC95 sup. (ms)": 129.9622007261009,
+        "Método do IC": "Normal (z)"
+      }
+    ],
+    "ajustes": [
+      {
+        "Algoritmo": "BFS",
+        "f(n,m)": "O(n+m)",
+        "c": 9.847425842142545e-05,
+        "R² (c·f)": 0.9748105872653215,
+        "a (ms/vértice)": -0.0014091522713793581,
+        "b (ms/aresta)": 0.00018712435905625147,
+        "R² (a·n+b·m)": 0.9824480807994953
+      },
+      {
+        "Algoritmo": "DFS",
+        "f(n,m)": "O(n+m)",
+        "c": 9.631987008438804e-05,
+        "R² (c·f)": 0.9839882174318287,
+        "a (ms/vértice)": -0.001184434367600511,
+        "b (ms/aresta)": 0.0001716296300381673,
+        "R² (a·n+b·m)": 0.989913012371103
+      },
+      {
+        "Algoritmo": "Euler (verificação)",
+        "f(n,m)": "O(n+m)",
+        "c": 0.00010516631384400591,
+        "R² (c·f)": 0.9836680402267992,
+        "a (ms/vértice)": -0.0010704669006515806,
+        "b (ms/aresta)": 0.00017429484184122105,
+        "R² (a·n+b·m)": 0.9880109252541809
+      },
+      {
+        "Algoritmo": "Dijkstra",
+        "f(n,m)": "O((n+m) log n)",
+        "c": 2.1574106089270958e-05,
+        "R² (c·f)": 0.9985373777652121,
+        "a (ms/vértice)": -0.0018655473190525827,
+        "b (ms/aresta)": 0.00040587653201681217,
+        "R² (a·n+b·m)": 0.9973532331788378
+      },
+      {
+        "Algoritmo": "Bellman-Ford",
+        "f(n,m)": "O(n·m) [efetivo O(k·m)]",
+        "c": 5.4354403653847376e-05,
+        "R² (c·f)": 0.9978698612835833,
+        "a (ms/vértice)": -0.0010581075498622098,
+        "b (ms/aresta)": 0.000938291576651407,
+        "R² (a·n+b·m)": 0.9973189800473615
+      },
+      {
+        "Algoritmo": "Tarjan (pontes/articulações)",
+        "f(n,m)": "O(n+m)",
+        "c": 0.0002037073609598762,
+        "R² (c·f)": 0.9968984631536418,
+        "a (ms/vértice)": -0.0010720429335846773,
+        "b (ms/aresta)": 0.0002787228835450538,
+        "R² (a·n+b·m)": 0.9983043526806279
+      },
+      {
+        "Algoritmo": "Prim",
+        "f(n,m)": "O(m log n)",
+        "c": 0.00010666960661026062,
+        "R² (c·f)": 0.9894863578544122,
+        "a (ms/vértice)": -0.028514784571179123,
+        "b (ms/aresta)": 0.003057135331574602,
+        "R² (a·n+b·m)": 0.992137745153251
+      },
+      {
+        "Algoritmo": "Kruskal",
+        "f(n,m)": "O(m log m)",
+        "c": 4.0229820342525745e-05,
+        "R² (c·f)": 0.9947824592245732,
+        "a (ms/vértice)": -0.009762624754422923,
+        "b (ms/aresta)": 0.0012595255147798082,
+        "R² (a·n+b·m)": 0.9944353903374995
+      }
+    ],
+    "floyd_warshall": {
+      "validacao": {
+        "n": 150,
+        "numpy_igual_python": true,
+        "igual_dijkstra_todas_fontes": true
+      },
+      "medicoes": [
+        {
+          "Versão": "Floyd-Warshall (numpy)",
+          "n": 200,
+          "m": 965,
+          "Repetições": 10,
+          "Média (ms)": 10.181216199998744,
+          "DP (ms)": 0.6927014092864536,
+          "IC95 inf. (ms)": 9.685687463090066,
+          "IC95 sup. (ms)": 10.67674493690742,
+          "Método do IC": "t-Student (9 g.l.)"
+        },
+        {
+          "Versão": "Floyd-Warshall (numpy)",
+          "n": 400,
+          "m": 3503,
+          "Repetições": 10,
+          "Média (ms)": 97.93490410004324,
+          "DP (ms)": 2.8407518986195415,
+          "IC95 inf. (ms)": 95.90275261121647,
+          "IC95 sup. (ms)": 99.96705558887001,
+          "Método do IC": "t-Student (9 g.l.)"
+        },
+        {
+          "Versão": "Floyd-Warshall (numpy)",
+          "n": 600,
+          "m": 4936,
+          "Repetições": 10,
+          "Média (ms)": 383.6819430999867,
+          "DP (ms)": 22.329671556126186,
+          "IC95 inf. (ms)": 367.7082583442551,
+          "IC95 sup. (ms)": 399.6556278557183,
+          "Método do IC": "t-Student (9 g.l.)"
+        },
+        {
+          "Versão": "Floyd-Warshall (numpy)",
+          "n": 800,
+          "m": 6637,
+          "Repetições": 10,
+          "Média (ms)": 935.1306439999917,
+          "DP (ms)": 37.13710656232096,
+          "IC95 inf. (ms)": 908.5643583528669,
+          "IC95 sup. (ms)": 961.6969296471165,
+          "Método do IC": "t-Student (9 g.l.)"
+        },
+        {
+          "Versão": "Floyd-Warshall (numpy)",
+          "n": 1000,
+          "m": 9305,
+          "Repetições": 10,
+          "Média (ms)": 1731.4011248999805,
+          "DP (ms)": 43.25082730962303,
+          "IC95 inf. (ms)": 1700.461346895097,
+          "IC95 sup. (ms)": 1762.340902904864,
+          "Método do IC": "t-Student (9 g.l.)"
+        },
+        {
+          "Versão": "Floyd-Warshall (numpy)",
+          "n": 1200,
+          "m": 11807,
+          "Repetições": 10,
+          "Média (ms)": 2696.938864100048,
+          "DP (ms)": 120.91838332686817,
+          "IC95 inf. (ms)": 2610.439063528365,
+          "IC95 sup. (ms)": 2783.4386646717307,
+          "Método do IC": "t-Student (9 g.l.)"
+        },
+        {
+          "Versão": "Floyd-Warshall (Python)",
+          "n": 50,
+          "m": 201,
+          "Repetições": 10,
+          "Média (ms)": 3.679582700010542,
+          "DP (ms)": 0.16933812131207063,
+          "IC95 inf. (ms)": 3.558445505485854,
+          "IC95 sup. (ms)": 3.80071989453523,
+          "Método do IC": "t-Student (9 g.l.)"
+        },
+        {
+          "Versão": "Floyd-Warshall (Python)",
+          "n": 100,
+          "m": 426,
+          "Repetições": 10,
+          "Média (ms)": 25.705037599959724,
+          "DP (ms)": 0.7908998258014788,
+          "IC95 inf. (ms)": 25.139261947641643,
+          "IC95 sup. (ms)": 26.270813252277808,
+          "Método do IC": "t-Student (9 g.l.)"
+        },
+        {
+          "Versão": "Floyd-Warshall (Python)",
+          "n": 150,
+          "m": 685,
+          "Repetições": 10,
+          "Média (ms)": 85.88365879995763,
+          "DP (ms)": 2.730136988142508,
+          "IC95 inf. (ms)": 83.93063645124393,
+          "IC95 sup. (ms)": 87.83668114867133,
+          "Método do IC": "t-Student (9 g.l.)"
+        },
+        {
+          "Versão": "Floyd-Warshall (Python)",
+          "n": 200,
+          "m": 965,
+          "Repetições": 10,
+          "Média (ms)": 203.6875823000173,
+          "DP (ms)": 2.830966622115147,
+          "IC95 inf. (ms)": 201.6624307763148,
+          "IC95 sup. (ms)": 205.71273382371984,
+          "Método do IC": "t-Student (9 g.l.)"
+        },
+        {
+          "Versão": "Floyd-Warshall (Python)",
+          "n": 250,
+          "m": 1304,
+          "Repetições": 10,
+          "Média (ms)": 470.29889589998675,
+          "DP (ms)": 35.19081358152664,
+          "IC95 inf. (ms)": 445.1249043777154,
+          "IC95 sup. (ms)": 495.4728874222581,
+          "Método do IC": "t-Student (9 g.l.)"
+        }
+      ],
+      "ajustes": {
+        "Floyd-Warshall (numpy)": {
+          "c_s_por_n3": 1.6189378031196634e-09,
+          "r2": 0.9936931063286097,
+          "estimativa_grafo_completo_s": 1578.959912010165
+        },
+        "Floyd-Warshall (Python)": {
+          "c_s_por_n3": 2.899402229619225e-08,
+          "r2": 0.9914382373468493,
+          "estimativa_grafo_completo_s": 28278.04675719999
+        }
+      },
+      "memoria_matriz_grafo_completo_MB": 750.3272171020508,
+      "operacoes_grafo_completo": 975306098213
+    }
+  },
+  "parte3_small_world": {
+    "C": 0.37030433808576263,
+    "L": 3.7640569408624867,
+    "k_medio": 34.9728748613492,
+    "instancias": [
+      {
+        "modelo": "Erdős–Rényi G(n,m)",
+        "seed": 42,
+        "C": 0.003528487972953533,
+        "L": 2.8957927591770876,
+        "componentes": 1
+      },
+      {
+        "modelo": "Erdős–Rényi G(n,m)",
+        "seed": 43,
+        "C": 0.0035501949221394325,
+        "L": 2.895870108914885,
+        "componentes": 1
+      },
+      {
+        "modelo": "Erdős–Rényi G(n,m)",
+        "seed": 44,
+        "C": 0.003490565756579428,
+        "L": 2.8964674263816055,
+        "componentes": 1
+      },
+      {
+        "modelo": "Erdős–Rényi G(n,m)",
+        "seed": 45,
+        "C": 0.0035355900775629005,
+        "L": 2.8963172650262203,
+        "componentes": 1
+      },
+      {
+        "modelo": "Erdős–Rényi G(n,m)",
+        "seed": 46,
+        "C": 0.0035127498320850882,
+        "L": 2.8973223073820087,
+        "componentes": 1
+      },
+      {
+        "modelo": "Configuração (trocas duplas, graus preservados)",
+        "seed": 42,
+        "C": 0.0109944856991772,
+        "L": 2.936051432029044,
+        "componentes": 1,
+        "trocas_realizadas": 867065
+      },
+      {
+        "modelo": "Configuração (trocas duplas, graus preservados)",
+        "seed": 43,
+        "C": 0.010596012810449348,
+        "L": 2.9353707139975795,
+        "componentes": 1,
+        "trocas_realizadas": 867065
+      },
+      {
+        "modelo": "Configuração (trocas duplas, graus preservados)",
+        "seed": 44,
+        "C": 0.010711037062505962,
+        "L": 2.9304193223073822,
+        "componentes": 1,
+        "trocas_realizadas": 867065
+      }
+    ],
+    "analitico_er": {
+      "C_rand_analitico": 0.003526557916844731,
+      "L_rand_analitico": 2.588779682991929
+    },
+    "fontes_amostradas_L_nulos": 1000,
+    "Erdős–Rényi G(n,m)": {
+      "C": 0.37030433808576263,
+      "L": 3.7640569408624867,
+      "C_rand": 0.0035235177122640766,
+      "L_rand": 2.8963539733763612,
+      "C_latt": 0.7279235639297258,
+      "gamma_C_sobre_Crand": 105.09506928172055,
+      "lambda_L_sobre_Lrand": 1.299584572694552,
+      "sigma": 80.8682031857434,
+      "omega": 0.26076344557737285,
+      "criterio_L_proximo": true,
+      "criterio_C_muito_maior": true,
+      "small_world": true,
+      "instancias": 5,
+      "C_rand_dp": 2.2824863904059076e-05,
+      "L_rand_dp": 0.0006125716342617173
+    },
+    "Configuração (trocas duplas, graus preservados)": {
+      "C": 0.37030433808576263,
+      "L": 3.7640569408624867,
+      "C_rand": 0.010767178524044171,
+      "L_rand": 2.9339471561113353,
+      "C_latt": 0.7279235639297258,
+      "gamma_C_sobre_Crand": 34.39195674696361,
+      "lambda_L_sobre_Lrand": 1.2829327661958922,
+      "sigma": 26.80729470254427,
+      "omega": 0.2707508563221105,
+      "criterio_L_proximo": true,
+      "criterio_C_muito_maior": true,
+      "small_world": true,
+      "instancias": 3,
+      "C_rand_dp": 0.00020508305278719256,
+      "L_rand_dp": 0.0030740938129513264
+    }
+  },
+  "parte3_lei_potencia": {
+    "Subgrafo G27 (LCC, 9.917 vértices)": {
+      "regressao_bruta": {
+        "gamma": 1.6115852287594035,
+        "intercepto": 0.17974877527422528,
+        "r2": 0.738816225144103,
+        "pontos": 201
+      },
+      "regressao_bins_log": {
+        "gamma": 0.9397499040536763,
+        "intercepto": -1.001248846917471,
+        "r2": 0.5709623891898767,
+        "pontos": 21
+      },
+      "regressao_ccdf": {
+        "inclinacao": -1.851711583398438,
+        "gamma": 2.851711583398438,
+        "r2": 0.7446741796206672
+      },
+      "mle": {
+        "gamma": 5.997376803044935,
+        "kmin": 119.0,
+        "ks": 0.05711468807399467,
+        "n_cauda": 259,
+        "erro_padrao": 0.31052188547278564,
+        "loglik": -1130.848759372595,
+        "candidatos_testados": 69
+      },
+      "vs_exponencial": {
+        "lambda_exp": 0.03524414030479568,
+        "R": -5.362251954510169,
+        "z_vuong": -2.9127114836645616,
+        "p_valor": 0.0035830548482244924,
+        "favorece": "exponencial",
+        "significativo": true
+      },
+      "vs_poisson": {
+        "lambda": 34.9728748613492,
+        "ks_poisson": 0.43646732119461185,
+        "loglik_poisson": -139917.0030711511,
+        "loglik_lei_potencia_kmin1": -54194.466451048145,
+        "gamma_kmin1": 1.2714228535701964,
+        "favorece": "lei de potência"
+      }
+    },
+    "Orkut completo (3.072.441 vértices)": {
+      "regressao_bruta": {
+        "gamma": 2.1272581122550407,
+        "intercepto": 1.1183803332839615,
+        "r2": 0.8431525770252533,
+        "pontos": 2863
+      },
+      "regressao_bins_log": {
+        "gamma": 1.9201685162945723,
+        "intercepto": 0.0903178413336887,
+        "r2": 0.8902872875334443,
+        "pontos": 24
+      },
+      "regressao_ccdf": {
+        "inclinacao": -1.925445561390121,
+        "gamma": 2.925445561390121,
+        "r2": 0.9674978941807986
+      },
+      "mle": {
+        "gamma": 2.962507259302881,
+        "kmin": 168.0,
+        "ks": 0.015964616648273644,
+        "n_cauda": 289226,
+        "erro_padrao": 0.0036491574832905184,
+        "loglik": -1722724.4624284934,
+        "candidatos_testados": 93
+      },
+      "vs_exponencial": {
+        "lambda_exp": 0.006237884363709088,
+        "R": 34935.43762998603,
+        "z_vuong": 33.90267944287764,
+        "p_valor": 6.082727434337849e-252,
+        "favorece": "lei de potência",
+        "significativo": true
+      },
+      "vs_poisson": {
+        "lambda": 76.28142118921079,
+        "ks_poisson": 0.5784951462403427,
+        "loglik_poisson": -155221170.92496485,
+        "loglik_lei_potencia_kmin1": -18783028.010495637,
+        "gamma_kmin1": 1.2376921263301937,
+        "favorece": "lei de potência"
+      }
+    },
+    "correlacao_spearman_grau_original_vs_sub": 0.6948284062498883,
+    "fracao_media_grau_preservado": 0.40281954161615485
+  },
+  "parte3_robustez": {
+    "r": 496,
+    "n": 9917,
+    "base": {
+      "removidos": 0,
+      "n_restante": 9917,
+      "S": 1.0,
+      "S_sobre_n_original": 1.0,
+      "c": 1,
+      "maior": 9917,
+      "E": 0.2798813293570756,
+      "L": 3.7777758168616375
+    },
+    "aleatoria_ic": {
+      "S": {
+        "n": 30,
+        "media": 0.9992145207515126,
+        "dp": 0.00036938669705126537,
+        "metodo": "Normal (z)",
+        "critico": 1.959963984540054,
+        "ic_inf": 0.9990823398484864,
+        "ic_sup": 0.9993467016545389,
+        "meia_largura": 0.00013218090302622953
+      },
+      "c": {
+        "n": 30,
+        "media": 7.833333333333333,
+        "dp": 2.865771044267305,
+        "metodo": "Normal (z)",
+        "critico": 1.959963984540054,
+        "ic_inf": 6.80784917940588,
+        "ic_sup": 8.858817487260787,
+        "meia_largura": 1.0254841539274528
+      },
+      "L": {
+        "n": 30,
+        "media": 3.7959805200825016,
+        "dp": 0.028454879399651974,
+        "metodo": "Normal (z)",
+        "critico": 1.959963984540054,
+        "ic_inf": 3.7857982593660946,
+        "ic_sup": 3.8061627807989087,
+        "meia_largura": 0.010182260716407057
+      },
+      "E": {
+        "n": 30,
+        "media": 0.2783905998719375,
+        "dp": 0.002162091053404028,
+        "metodo": "Normal (z)",
+        "critico": 1.959963984540054,
+        "ic_inf": 0.27761691974175073,
+        "ic_sup": 0.27916428000212423,
+        "meia_largura": 0.0007736801301867492
+      }
+    },
+    "ataques": {
+      "Grau": {
+        "removidos": 496,
+        "n_restante": 9421,
+        "S": 0.9990446874004882,
+        "S_sobre_n_original": 0.9490773419380861,
+        "c": 8,
+        "maior": 9412,
+        "E": 0.2619924388332828,
+        "L": 4.024571777706939
+      },
+      "Betweenness": {
+        "removidos": 496,
+        "n_restante": 9421,
+        "S": 0.9959664579131727,
+        "S_sobre_n_original": 0.9461530704850257,
+        "c": 36,
+        "maior": 9383,
+        "E": 0.24705467070232198,
+        "L": 4.245751589654809
+      },
+      "PageRank": {
+        "removidos": 496,
+        "n_restante": 9421,
+        "S": 0.9975586455790256,
+        "S_sobre_n_original": 0.9476656246848846,
+        "c": 22,
+        "maior": 9398,
+        "E": 0.255223053365012,
+        "L": 4.146610088326062
+      }
+    },
+    "centralidades": {
+      "pagerank_iteracoes": 97,
+      "pagerank_confere_igraph_maxdif": 6.384811299456339e-13,
+      "brandes_fontes": 1000,
+      "brandes_segundos": 33.755463685999985,
+      "spearman_brandes_amostrado_vs_exato": 0.9757927369337004,
+      "sobreposicao_top100_amostrado_vs_exato": 0.87
+    },
+    "razao_S_ataque_grau_sobre_aleatoria": 0.9998300331435369
+  },
+  "parte3_descoberta": {
+    "hubs": [
+      {
+        "id Orkut": "378358",
+        "grau (subgrafo)": 250,
+        "grau (Orkut completo)": 358,
+        "betweenness": 0.0024768420914146444,
+        "PageRank": 0.0003631925064262009,
+        "clusterização local": 0.21445783132530122,
+        "nº comunidades": 2
+      },
+      {
+        "id Orkut": "94761",
+        "grau (subgrafo)": 243,
+        "grau (Orkut completo)": 349,
+        "betweenness": 0.0022924601570068616,
+        "PageRank": 0.00038228709899571466,
+        "clusterização local": 0.16399687106757813,
+        "nº comunidades": 2
+      },
+      {
+        "id Orkut": "171264",
+        "grau (subgrafo)": 239,
+        "grau (Orkut completo)": 355,
+        "betweenness": 0.0016093820462065342,
+        "PageRank": 0.0003416743042086558,
+        "clusterização local": 0.23409866038465596,
+        "nº comunidades": 3
+      },
+      {
+        "id Orkut": "98891",
+        "grau (subgrafo)": 232,
+        "grau (Orkut completo)": 278,
+        "betweenness": 0.0012403520135153298,
+        "PageRank": 0.0003510821502026793,
+        "clusterização local": 0.24231228541573369,
+        "nº comunidades": 2
+      },
+      {
+        "id Orkut": "96420",
+        "grau (subgrafo)": 228,
+        "grau (Orkut completo)": 507,
+        "betweenness": 0.004168097217654923,
+        "PageRank": 0.00037876204813172646,
+        "clusterização local": 0.1742793106113301,
+        "nº comunidades": 1
+      },
+      {
+        "id Orkut": "12173",
+        "grau (subgrafo)": 227,
+        "grau (Orkut completo)": 369,
+        "betweenness": 0.001662377234996805,
+        "PageRank": 0.000328251397329471,
+        "clusterização local": 0.25570153210401153,
+        "nº comunidades": 3
+      },
+      {
+        "id Orkut": "499180",
+        "grau (subgrafo)": 218,
+        "grau (Orkut completo)": 309,
+        "betweenness": 0.0009499944189855667,
+        "PageRank": 0.00030536582433462653,
+        "clusterização local": 0.2666469369635987,
+        "nº comunidades": 3
+      },
+      {
+        "id Orkut": "177048",
+        "grau (subgrafo)": 216,
+        "grau (Orkut completo)": 291,
+        "betweenness": 0.01783577146572592,
+        "PageRank": 0.0007566195440752608,
+        "clusterização local": 0.056459948320413435,
+        "nº comunidades": 1
+      },
+      {
+        "id Orkut": "246019",
+        "grau (subgrafo)": 211,
+        "grau (Orkut completo)": 354,
+        "betweenness": 0.0007252611774388738,
+        "PageRank": 0.00030042478026338947,
+        "clusterização local": 0.2656285262920334,
+        "nº comunidades": 4
+      },
+      {
+        "id Orkut": "24553",
+        "grau (subgrafo)": 203,
+        "grau (Orkut completo)": 299,
+        "betweenness": 0.011100079078534329,
+        "PageRank": 0.000366611426972736,
+        "clusterização local": 0.18075403599473247,
+        "nº comunidades": 5
+      }
+    ],
+    "frac_arestas_intra_comunidade": 0.8742135826033803,
+    "frac_vertices_em_mais_de_1_comunidade": 0.2604618332156902,
+    "spearman_grau_vs_clusterizacao": -0.06184511165499812,
+    "spearman_ncomunidades_vs_betweenness": 0.23586715944626652,
+    "spearman_grau_vs_betweenness": 0.6471014943430661,
+    "betweenness_media_1_comunidade": 0.00021026592735148822,
+    "betweenness_media_2mais_comunidades": 0.000468724530756829,
+    "C_de_k_expoente": 0.19852973962051546,
+    "C_de_k_r2": 0.4128704493975688,
+    "arestas_tocando_top1pct": 0.09382226246013851,
+    "arestas_tocando_top5pct": 0.29805723907665516
+  },
+  "parte3_modelos": {
+    "tabela": [
+      {
+        "Modelo": "Orkut G27",
+        "n": 9917,
+        "m": 173413,
+        "grau médio": 34.9728748613492,
+        "grau máx.": 250,
+        "C": 0.37030433808576263,
+        "L": 3.7640569408624867,
+        "γ MLE": 5.997376803044935,
+        "k_min": 119.0,
+        "cauda (Vuong)": "exponencial"
+      },
+      {
+        "Modelo": "Erdős–Rényi",
+        "n": 9917,
+        "m": 173413,
+        "grau médio": 34.9728748613492,
+        "grau máx.": 59,
+        "C": 0.003528487972953533,
+        "L": 2.8962063331988706,
+        "γ MLE": 19.767432539870164,
+        "k_min": 47.0,
+        "cauda (Vuong)": "exponencial"
+      },
+      {
+        "Modelo": "Barabási–Albert (m=17)",
+        "n": 9917,
+        "m": 168436,
+        "grau médio": 33.96914389432288,
+        "grau máx.": 568,
+        "C": 0.017100000590622073,
+        "L": 2.8071419927390076,
+        "γ MLE": 2.929634816599856,
+        "k_min": 21.0,
+        "cauda (Vuong)": "potência"
+      },
+      {
+        "Modelo": "Watts–Strogatz (k=34, p=0,1)",
+        "n": 9917,
+        "m": 168589,
+        "grau médio": 34.0,
+        "grau máx.": 41,
+        "C": 0.5306874309186066,
+        "L": 3.5968154497781364,
+        "γ MLE": 19.99999522962273,
+        "k_min": 34.0,
+        "cauda (Vuong)": "exponencial"
+      }
+    ]
+  }
+}
