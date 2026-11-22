@@ -2,7 +2,7 @@
 
 Fazer n BFS em Python puro no grafo de ~10 mil vértices e 173 mil arestas
 levaria minutos; usamos o igraph (BFS em C) **em blocos de fontes**, sem nunca
-materializar a matriz n×n inteira (que teria 9.917² × 8 B ≈ 787 MB). A
+materializar a matriz n×n inteira (que teria 9.917² × 8 B ≈ 787 MB = 750 MiB). A
 implementação própria (BFS em Python, ``algoritmos.bfs``) é usada para validar
 os resultados num conjunto de fontes e nos testes.
 """

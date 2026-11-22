@@ -1,0 +1,19 @@
+\begin{table*}[!htb]
+\centering
+\caption{Tempo médio (ms) em subgrafos BFS crescentes; 10 repetições por tamanho. Os desvios-padrão e os IC de 95\% (t-Student, 9 g.l.) estão em \texttt{resultados/parte2\_tempos\_escala.csv}.}
+\label{tab:escala}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+n & m & BFS & DFS & Euler & Dijkstra & Bellman-Ford & Tarjan & Prim & Kruskal \\
+\midrule
+1.000 & 9.305 & 0,88 & 0,92 & 1,05 & 2,62 & 6,54 & 2,39 & 7,26 & 4,66 \\
+2.000 & 24.175 & 2,03 & 2,01 & 2,22 & 5,88 & 19,11 & 4,51 & 17,90 & 12,24 \\
+4.000 & 60.968 & 5,02 & 4,98 & 5,45 & 15,46 & 56,26 & 10,89 & 57,52 & 34,62 \\
+6.000 & 97.680 & 8,19 & 8,33 & 9,52 & 28,49 & 84,94 & 19,39 & 110,89 & 57,94 \\
+8.000 & 138.608 & 13,41 & 12,33 & 13,73 & 39,81 & 126,07 & 29,00 & 200,43 & 79,31 \\
+9.917 & 173.413 & 16,38 & 18,06 & 20,19 & 53,44 & 148,40 & 36,32 & 235,52 & 109,86 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

@@ -1,0 +1,25 @@
+\begin{table*}[!htb]
+\centering
+\caption{Medidas calculadas e não calculadas, com o método ou a justificativa.}
+\label{tab:calculadas}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{p{4.6cm}cp{11cm}}
+\toprule
+Medida & Calculada & Método / justificativa \\
+\midrule
+Vértices e arestas & sim & contagem direta da lista de arestas \\
+Grau mín./máx./médio/mediano & sim & vetor de graus (CSR) \\
+Distribuição de graus & sim & histograma log-log e CCDF (k = 0 excluído) \\
+Densidade & sim & 2m / (n(n-1)) \\
+Componentes conexas e tamanhos & sim & BFS própria \\
+Diâmetro, raio, caminho médio & sim & exato: BFS de todos os vértices (igraph, C), em blocos; conferido com BFS própria \\
+Triângulos & sim & implementação própria, orientação por grau O(m·√m); conferida com igraph \\
+Clusterização média e transitividade & sim & a partir dos triângulos por vértice \\
+Visualização reduzida & sim & 150 vértices de maior grau, layout Kamada-Kawai \\
+Componentes fortemente conexas / Euler dirigido & não & não se aplica: com-Orkut é não direcionado \\
+Floyd-Warshall no grafo inteiro & não & O(n³) ≈ 9,8e11 passos e matriz de 787 MB; rodado só em subgrafos \\
+Pesos reais nas arestas & não & o SNAP não fornece pesos; usamos peso unitário e um peso derivado (vizinhos em comum) \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

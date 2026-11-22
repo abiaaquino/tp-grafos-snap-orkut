@@ -1,0 +1,21 @@
+\begin{table}[!htb]
+\centering
+\caption{Ajuste de mínimos quadrados $t \approx c\cdot f(n,m)$ aos tempos médios da Tabela~\ref{tab:escala} ($t$ em ms) e ajuste alternativo $t \approx a n + b m$.}
+\label{tab:ajustes}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llrrr}
+\toprule
+Algoritmo & f(n,m) & c & R² (c·f) & R² (a·n+b·m) \\
+\midrule
+BFS & O(n+m) & 0,000088 & 0,9910 & 0,9952 \\
+DFS & O(n+m) & 0,000090 & 0,9764 & 0,9832 \\
+Euler (verificação) & O(n+m) & 0,000101 & 0,9767 & 0,9834 \\
+Dijkstra & O((n+m) log n) & 0,000022 & 0,9978 & 0,9960 \\
+Bellman-Ford & O(n·m) [efetivo O(k·m)] & 0,000054 & 0,9968 & 0,9970 \\
+Tarjan (pontes/articulações) & O(n+m) & 0,000194 & 0,9948 & 0,9970 \\
+Prim & O(m log n) & 0,000102 & 0,9810 & 0,9898 \\
+Kruskal & O(m log m) & 0,000035 & 0,9963 & 0,9949 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

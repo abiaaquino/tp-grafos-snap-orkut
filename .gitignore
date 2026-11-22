@@ -17,3 +17,15 @@ desktop.ini
 
 # pacote temporário de transferência
 *.tgz
+
+# auxiliares do LaTeX
+relatorio/*.aux
+relatorio/*.log
+relatorio/*.fls
+relatorio/*.fdb_latexmk
+relatorio/*.blg
+relatorio/*.out
+relatorio/main.pdf
+
+# cópias feitas pelo app do Claude
+Claude outputs/

@@ -1,0 +1,22 @@
+\begin{table*}[!htb]
+\centering
+\caption{Estimativas do expoente de $P(k) \sim C k^{-\gamma}$ no subgrafo e no Orkut completo.}
+\label{tab:powerlaw}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lcc}
+\toprule
+Método & Subgrafo G27 & Orkut completo \\
+\midrule
+Regressão log-log, pontos brutos: γ (R²) & 1,61 (0,74) & 2,13 (0,84) \\
+Regressão log-log, bins logarítmicos: γ (R²) & 0,94 (0,57) & 1,92 (0,89) \\
+Regressão na CCDF: γ = 1 − inclinação (R²) & 2,85 (0,74) & 2,93 (0,97) \\
+MLE discreta: γ ± erro-padrão & 6,00 ± 0,31 & 2,96 ± 0,004 \\
+k\_min (mínima distância KS) / vértices na cauda & 119 / 259 & 168 / 289.226 \\
+Distância KS na cauda & 0,057 & 0,016 \\
+Vuong vs. exponencial: z (p) & -2,91 (0,0036) & 33,9 (< 1e-200) \\
+Modelo favorecido na cauda & exponencial & lei de potência \\
+KS global da Poisson (λ = grau médio) & 0,44 & 0,58 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table*}

@@ -1,0 +1,314 @@
+% Relatório — TP "Analisando Grafos do SNAP" — G27 com-Orkut
+% Todos os números vêm de valores.tex / valores_extra.tex / tabelas/ (gerados por scripts/gerar_relatorio.py).
+% Comentários "% INTERPRETAÇÃO" marcam parágrafos interpretativos para a autora revisar com suas palavras.
+\PassOptionsToPackage{expansion=false}{microtype}
+\IfFileExists{webmedia.cls}{\documentclass[sigconf]{webmedia}}{\documentclass[sigconf]{acmart}}
+
+\usepackage[brazilian]{babel}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage[section]{placeins}
+\usepackage{amsmath}
+\usepackage{xurl}
+\setlength{\emergencystretch}{2em}
+
+\DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
+\DeclareUnicodeCharacter{00B3}{\textsuperscript{3}}
+\DeclareUnicodeCharacter{00B2}{\textsuperscript{2}}
+\DeclareUnicodeCharacter{00B7}{\ensuremath{\cdot}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+\DeclareUnicodeCharacter{2212}{\ensuremath{-}}
+\DeclareUnicodeCharacter{03B3}{\ensuremath{\gamma}}
+\DeclareUnicodeCharacter{03BB}{\ensuremath{\lambda}}
+\DeclareUnicodeCharacter{03C3}{\ensuremath{\sigma}}
+\DeclareUnicodeCharacter{03C9}{\ensuremath{\omega}}
+\DeclareUnicodeCharacter{2308}{\ensuremath{\lceil}}
+\DeclareUnicodeCharacter{2309}{\ensuremath{\rceil}}
+\DeclareUnicodeCharacter{2229}{\ensuremath{\cap}}
+\DeclareUnicodeCharacter{2079}{\textsuperscript{9}}
+\DeclareUnicodeCharacter{2261}{\ensuremath{\equiv}}
+\DeclareUnicodeCharacter{221A}{\ensuremath{\surd}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2211}{\ensuremath{\sum}}
+
+\input{valores.tex}
+\input{valores_extra.tex}
+
+\newcommand{\autora}{Ana Beatriz Figueiredo de Aquino}
+\newcommand{\matricula}{224215935}
+\newcommand{\repo}{\url{https://github.com/abiaaquino/tp-grafos-snap-orkut}}
+\newcommand{\instituicao}{UFBA -- Universidade Federal da Bahia}
+\newcommand{\emailautora}{ana.aquino.br@gmail.com}
+\newcommand{\departamento}{Instituto de Computação, Departamento de Ciência da Computação}
+\newcommand{\disciplina}{MATA53-393366-2026.2 -- Teoria dos Grafos}
+
+\settopmatter{printacmref=false}
+\acmConference[MATA53 -- Teoria dos Grafos]{MATA53-393366-2026.2 -- Teoria dos Grafos -- Trabalho Prático: Analisando Grafos do SNAP}{2026.2}{UFBA, Salvador, BA, Brasil}
+\setcopyright{none}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+
+\begin{document}
+
+\title{Analisando Grafos do SNAP: a rede social com-Orkut (G27)}
+
+\author{\autora}
+\affiliation{\department{\departamento}\institution{\instituicao}\city{Salvador}\state{Bahia}\country{Brasil}}
+\email{\emailautora}
+
+\begin{abstract}
+Este trabalho analisa o grafo G27 do SNAP, a rede social não direcionada com-Orkut (\origV{} vértices e \origE{} arestas, com comunidades \emph{ground-truth}). O arquivo bruto foi auditado em \emph{streaming} (0 auto-laços e 0 arestas duplicadas; as contagens conferem com o SNAP) e reduzido a um subgrafo induzido por \nComunidadesSel{} comunidades sobrepostas, cuja maior componente conexa tem \nV{} vértices e \nE{} arestas. Na Parte~I, o grafo tem diâmetro \diametro, raio \raio, caminho médio \caminhoMedio{} e clusterização média \clusterMedia. Na Parte~II, implementamos e validamos BFS, DFS, verificação de Euler, Dijkstra, Bellman-Ford, Floyd-Warshall, Tarjan, Prim e Kruskal, com tempos e intervalos de confiança que seguem a complexidade teórica ($R^2 \geq \rdoisMin$). Na Parte~III, a rede é \emph{small-world} mesmo contra um nulo com os mesmos graus ($\sigma = \swSigmaConf$). A lei de potência aparece no Orkut completo ($\gamma = \plGammaFull$), mas some no subgrafo amostrado. Remover os 5\% de maior grau tem o mesmo efeito que remover 5\% ao acaso, enquanto remover os 5\% de maior betweenness gera \robCbet{} componentes. A descoberta principal é que esta região da rede é sustentada pelos vértices-ponte entre comunidades, e não pelos hubs. Código e dados: \repo.
+\end{abstract}
+
+\keywords{análise de redes, redes sociais, small-world, lei de potência, robustez, algoritmos em grafos}
+
+\maketitle
+
+% =====================================================================
+\section{Introdução}
+O Orkut foi uma rede social on-line muito popular no Brasil na década de 2000. O SNAP~\cite{snapnets} disponibiliza um retrato da rede de amizades coletado por \citet{mislove2007} e organizado por \citet{yang2012} como com-Orkut: um grafo não direcionado, sem pesos, em que cada vértice é um usuário e cada aresta uma amizade. Os grupos criados pelos usuários formam as comunidades \emph{ground-truth}. O dataset é interessante por dois motivos. É uma rede social real em grande escala, com 117 milhões de arestas. E traz comunidades explícitas, o que permite relacionar estrutura local (triângulos, grupos) e estrutura global (distâncias, robustez).
+
+O trabalho segue as três partes do enunciado. A Parte~I mede a estrutura do grafo, a Parte~II implementa e cronometra algoritmos clássicos e a Parte~III investiga propriedades de redes complexas (\emph{small-world}, lei de potência, robustez e uma descoberta). As Seções~\ref{sec:grafo}--\ref{sec:tratamento} descrevem a escolha do grafo, o código, o grafo original e o tratamento. A Seção~\ref{sec:metodo} descreve a metodologia, a Seção~\ref{sec:resultados} os resultados e a Seção~\ref{sec:discussao} as limitações.
+
+% =====================================================================
+\section{Determinação do grafo}\label{sec:grafo}
+A regra do enunciado é $f(M) = (\text{soma dos dígitos de } M) \times (M \bmod 100 + 1) \bmod 129$, com $f(M) = 129$ se o resultado for 0. Para $M = \matricula$:
+\begin{itemize}
+\item soma dos dígitos: $2+2+4+2+1+5+9+3+5 = 33$;
+\item $M \bmod 100 = 35$, logo $M \bmod 100 + 1 = 36$;
+\item $33 \times 36 = 1188$ e $1188 = 9 \times 129 + 27$, logo $f(M) = 27$.
+\end{itemize}
+O grafo é o \textbf{G27, com-Orkut}. Na planilha de datasets, o mesmo arquivo do SNAP pode aparecer em mais de um índice ou categoria. Usamos os arquivos \texttt{com-orkut.ungraph.txt.gz} (arestas) e \texttt{com-orkut.top5000.cmty.txt.gz} (as 5.000 maiores comunidades).
+
+% =====================================================================
+\section{Código e dados}
+Todo o código está em \repo. A lógica fica em \texttt{src/}, com um módulo por tema: estrutura do grafo, algoritmos, métricas, distâncias, centralidade, modelos, lei de potência, robustez, medição, figuras e formatação. O \texttt{notebook.ipynb} apenas orquestra. Os scripts são: \texttt{tratamento\_orkut.py} (auditoria e redução), \texttt{graus\_grafo\_completo.py} (distribuição de graus do Orkut inteiro), \texttt{verificar\_dados.py} (confere os dados tratados e retorna código diferente de 0 se algo divergir), \texttt{run\_all.py} (todas as análises sem o notebook) e \texttt{gerar\_relatorio.py} (gera as tabelas e macros deste texto, de modo que nenhum número foi digitado à mão). A pasta \texttt{tests/} tem 24 testes \texttt{pytest} que comparam as implementações próprias com networkx~\cite{hagberg2008} e igraph~\cite{csardi2006} em grafos pequenos com semente fixa e em casos construídos: ciclo, caminho, estrela, ciclo negativo e grafo desconexo. O README traz uma tabela que liga cada requisito do enunciado à seção do notebook, ao código e ao arquivo de saída. O arquivo bruto (448~MB) não é versionado; os dados tratados ocupam 3~MB.
+
+% =====================================================================
+\section{Descrição do grafo original}\label{sec:original}
+O arquivo de arestas tem 4 linhas de comentário e uma aresta por linha (\texttt{FromNodeId}, \texttt{ToNodeId}), cada aresta não direcionada registrada uma única vez. O grafo não tem marcas de tempo, pesos nem sinais. A auditoria (Seção~\ref{sec:tratamento}) encontrou \origV{} vértices e \origE{} arestas, os mesmos valores da página do SNAP, com ids entre 1 e \origIdMax{} (há lacunas). No grafo completo, o grau médio é \origGrauMedio, o mediano \origGrauMediano{} e o máximo \origGrauMax. A distribuição de graus do grafo original aparece na linha inferior da Figura~\ref{fig:powerlaw}: cauda longa que cobre quatro ordens de grandeza. O arquivo de comunidades tem uma comunidade por linha, com tamanhos entre 3 e 4.785 membros (mediana 115). Os vértices podem pertencer a várias comunidades.
+
+% =====================================================================
+\section{Tratamento dos dados}\label{sec:tratamento}
+O tratamento é feito pelo script \texttt{tratamento\_orkut.py}, que lê o \texttt{.txt.gz} uma única vez, em blocos de 5 milhões de linhas, usando menos de 1~GB de RAM (\origSegLeitura{}~s). A Tabela~\ref{tab:tratamentos} resume os passos. As decisões foram:
+\begin{enumerate}
+\item \textbf{Auditoria exata.} Cada aresta vira uma chave canônica $(\min(u,v), \max(u,v))$ em 64 bits, gravada em 32 arquivos temporários por \emph{hash}; cada arquivo é ordenado separadamente para contar repetições. Resultado: \origLacos{} auto-laços e \origDuplicadas{} duplicatas, inclusive no par $u$--$v$ / $v$--$u$. Todas as linhas têm $u < v$.
+\item \textbf{Por que reduzir.} Com 117 milhões de arestas, as medidas exatas de distância ($O(n \cdot m)$) e o Floyd-Warshall ($O(n^3)$) são inviáveis em Python. O enunciado sugere trabalhar com alguns milhares de vértices.
+\item \textbf{Como reduzir: subgrafo induzido por comunidades.} Uma semente aleatória fixa (\texttt{seed=42}) escolhe a comunidade inicial (\#\sementeComunidade). A cada passo, entra a comunidade de maior sobreposição relativa $|C \cap S|/|C|$ com o conjunto $S$ já escolhido; comunidades com mais de 2.000 membros são ignoradas. Avaliamos os prefixos da lista e escolhemos o maior cuja componente gigante tivesse no máximo 10.000 vértices: \nComunidadesSel{} comunidades. O subgrafo induzido preserva \emph{todas} as arestas do Orkut entre os vértices escolhidos, e com isso triângulos e estrutura comunitária. Uma amostragem aleatória de arestas destruiria esses padrões.
+\item \textbf{Maior componente conexa.} O induzido já era conexo (\indV{} vértices, \indE{} arestas), então a LCC é o próprio induzido.
+\item \textbf{Grafo simples e não direcionado.} Como não há laços nem duplicatas, nada precisou ser removido. Não existe versão dirigida a manter.
+\item \textbf{Pesos.} O SNAP não fornece pesos. Usamos o peso unitário e um peso derivado dos dados, $w(u,v) = 1/(1 + |N(u) \cap N(v)|)$ (\emph{embeddedness}): laços com muitos amigos em comum ficam curtos e laços-ponte ficam longos, na linha dos laços fracos de \citet{granovetter1973}. A mediana de $w$ é \wMediana; \wFracUm\% das arestas têm $w = 1$ (nenhum amigo em comum).
+\item \textbf{Graus do grafo completo.} Para testar a lei de potência sem o viés da amostra, um segundo script percorre o bruto e grava apenas a distribuição $(k, \text{nº de vértices})$ do Orkut completo (21~kB).
+\end{enumerate}
+O viés da redução é conhecido. A amostra fica centrada em grupos densos, e cada vértice mantém em média \grauPreservado\% do seu grau original (correlação de Spearman entre os graus: \spearmanGrauOrig). Esse efeito é discutido na Seção~\ref{sec:lp}.
+
+\input{tabelas/tratamentos.tex}
+
+% =====================================================================
+\section{Metodologia}\label{sec:metodo}
+\paragraph{Implementação e validação.} O grafo é guardado em três formas: lista de arestas, lista de adjacência e CSR. Todos os algoritmos das Partes~II e III são implementação própria, sempre validados contra uma referência independente. As bibliotecas prontas são usadas só para a BFS em C (igraph), para conferências e para o layout da visualização (networkx).
+
+\paragraph{Distâncias.} Diâmetro, raio e caminho médio são \emph{exatos}: uma BFS a partir de cada um dos \nV{} vértices, em C (igraph), processada em blocos de 500 fontes. Assim nunca se materializa a matriz $n \times n$, que teria 750~MB. O processo leva \segDistancias~s; as excentricidades de 20 fontes foram conferidas com a nossa BFS em Python. Os triângulos são contados por orientação pelo grau, em $O(m\sqrt{m})$.
+
+\paragraph{Medição de tempo.} Cada medição descarta 1 execução de aquecimento e desliga o coletor de lixo (\texttt{gc}). No grafo completo usamos 30 repetições e IC de 95\% Normal, $\bar{x} \pm 1{,}96\, s/\sqrt{n}$. Nos subgrafos BFS crescentes de 1.000 a \nV{} vértices (raiz aleatória fixa), usamos 10 repetições por tamanho e IC $t$-Student com 9 graus de liberdade ($t = 2{,}262$), pois $n < 30$ e $\sigma$ é desconhecido. Ajustamos $t \approx c \cdot f(n,m)$ por mínimos quadrados e reportamos o $R^2$. Ambiente: \cpu, \nucleos{} núcleos lógicos, Python \pyver.
+
+\paragraph{Small-world.} Comparamos $C$ e $L$ do grafo com os valores médios de duas referências geradas por nós: (i) Erdős–Rényi $G(n,m)$~\cite{erdos1959} (5 instâncias) e (ii) o modelo de configuração, obtido por \swTrocas{} trocas duplas de arestas que preservam o grau de cada vértice~\cite{maslov2002} (3 instâncias). O critério de \citet{watts1998} pede $L \approx L_{\text{aleatório}}$ e $C \gg C_{\text{aleatório}}$. Calculamos $\sigma = (C/C_r)/(L/L_r)$~\cite{humphries2008} e $\omega = L_r/L - C/C_{\text{ret}}$~\cite{telesford2011}, com $C_{\text{ret}} = 3(k-2)/(4(k-1))$ para um anel regular. Declaramos \emph{small-world} se $L/L_r \leq 1{,}5$, $C/C_r \geq 10$ e $\sigma > 1$. Nenhuma função pronta de \emph{small-world} foi chamada.
+
+\paragraph{Lei de potência.} Testamos $P(k) \sim C k^{-\gamma}$ de quatro formas: regressão em $\log P(k) \times \log k$ com pontos brutos e com bins logarítmicos; regressão na CCDF $P(K \geq k)$, cuja inclinação é $-(\gamma - 1)$; e máxima verossimilhança discreta~\cite{clauset2009}, normalizada pela zeta de Hurwitz $\zeta(\gamma, k_{\min})$, com $k_{\min}$ escolhido pela menor distância de Kolmogorov--Smirnov. A lei de potência foi comparada à exponencial na mesma cauda pelo teste de Vuong~\cite{vuong1989} e, globalmente, à Poisson que um grafo ER produziria.
+
+\paragraph{Robustez.} Seguindo \citet{albert2000}, removemos $r = \lceil 0{,}05\,n \rceil = \robR$ vértices de duas maneiras. Na remoção aleatória, fizemos 30 repetições. Nos ataques, removemos os $r$ primeiros de um ranking fixo calculado no grafo intacto, por grau, por betweenness (Brandes~\cite{brandes2001} amostrado com \brandesFontes{} fontes e escala $n/k$~\cite{brandes2007}) ou por PageRank~\cite{page1999} (iteração de potência). As métricas são: (A) $S$, a fração dos vértices restantes na maior componente; (B) $c$, o número de componentes; (C) $L$, o caminho médio na maior componente; e (D) $E$, a eficiência global~\cite{latora2001}. $L$ e $E$ foram estimados com 200 fontes. O betweenness amostrado teve correlação de Spearman de \brandesSpearman{} com o exato do igraph, e \brandesTopCem\% de sobreposição no top-100. O nosso PageRank difere do igraph em menos de $10^{-12}$.
+
+% =====================================================================
+\section{Resultados}\label{sec:resultados}
+\subsection{Parte I --- Análise estrutural}
+\input{tabelas/parte1.tex}
+
+\paragraph{Tamanho, graus e densidade.} A Tabela~\ref{tab:parte1} reúne as medidas. O grafo tem \nV{} vértices e \nE{} arestas. O grau vai de \grauMin{} a \grauMax, com média \grauMedio{} (desvio-padrão \desvioGrau) e mediana \grauMediano. A densidade é \densidade: o grafo é esparso, pois cada usuário se liga a menos de 0,4\% dos demais. A Figura~\ref{fig:graus} mostra a distribuição: o histograma é assimétrico à direita, o log-log tem um platô até $k \approx 20$ e depois cai cada vez mais rápido, e a CCDF despenca perto de $k = 250$. Esse corte é efeito da amostragem, discutido na Seção~\ref{sec:lp}.
+
+\begin{figure*}[!htb]
+\centering
+\includegraphics[width=\textwidth]{figuras/p1_distribuicao_graus.pdf}
+\caption{Distribuição de graus da LCC tratada: histograma em escala linear (60 bins), $P(k)$ em log-log (vértices com $k = 0$ excluídos) e CCDF $P(K \geq k)$ em log-log.}
+\label{fig:graus}
+\end{figure*}
+
+\paragraph{Componentes.} Há \nComp{} componente conexa (Tabela~\ref{tab:parte1}). Isso era esperado, porque o tratamento manteve a LCC e o induzido já era conexo.
+
+\paragraph{Distâncias.} O diâmetro é \diametro, o raio \raio{} e o caminho médio \caminhoMedio, calculados exatamente sobre os \paresOrdenados{} pares ordenados. Só \centroTam{} vértice está no centro (excentricidade \raio) e \periferiaTam{} estão na periferia (excentricidade \diametro). A Tabela~\ref{tab:distancias} e a Figura~\ref{fig:dist} mostram que \fracAteQuatro\% dos pares estão a no máximo 4 saltos: metade (\fracDistQuatro\%) a exatamente 4 e \fracDistTres\% a 3. Em média, qualquer usuário alcança qualquer outro em menos de quatro passos.
+
+\input{tabelas/distancias.tex}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.85\linewidth]{figuras/p1_distribuicao_distancias.pdf}
+\caption{Distribuição das distâncias (\% dos pares ordenados); a linha tracejada marca o caminho médio.}
+\label{fig:dist}
+\end{figure}
+
+\paragraph{Triângulos e clusterização.} O grafo tem \triangulos{} triângulos, contados em \segTriangulos~s e conferidos com o igraph. A clusterização média é \clusterMedia{} e a transitividade global, \transitividade. Em média, 37\% dos pares de amigos de um usuário também são amigos entre si, valor cerca de cem vezes maior que a densidade.
+
+\paragraph{Visualização.} A Figura~\ref{fig:vis} mostra os 150 vértices de maior grau (layout Kamada-Kawai), coloridos pela comunidade principal. Aparecem dois núcleos densos de comunidades sobrepostas (azul; verde/laranja/vermelho) e grupos periféricos (marrom e cinza no topo) ligados por poucas arestas. Essa imagem antecipa o papel dos vértices-ponte na Parte~III. % INTERPRETAÇÃO
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{figuras/p1_visualizacao_top150.pdf}
+\caption{Subgrafo dos 150 vértices de maior grau. Tamanho $\propto$ grau; cor = comunidade principal (as 9 mais frequentes; cinza = demais).}
+\label{fig:vis}
+\end{figure}
+
+\paragraph{Medidas calculadas.} A Tabela~\ref{tab:calculadas} lista o método de cada medida e justifica as ausências. As medidas dirigidas (SCC, Euler dirigido) não se aplicam, porque o grafo é não direcionado. O Floyd-Warshall no grafo inteiro foi substituído por subgrafos e por extrapolação (Seção~\ref{sec:fw}). Não há pesos reais.
+
+\input{tabelas/calculadas.tex}
+
+\subsection{Parte II --- Algoritmos}\label{sec:parte2}
+A Tabela~\ref{tab:tempos} traz o tempo de cada algoritmo no grafo completo, a Tabela~\ref{tab:escala} o tempo nos subgrafos e a Tabela~\ref{tab:ajustes} o ajuste à complexidade teórica, visualizado na Figura~\ref{fig:escala}. A fonte das buscas é o vértice 0.
+
+\input{tabelas/tempos.tex}
+
+\paragraph{BFS --- $O(n+m)$.} A BFS alcança os \nV{} vértices; a excentricidade da fonte é \bfsExc{} e o nível mais populoso é o 4 (\bfsNivelQuatro{} vértices). As distâncias coincidem com as do igraph. Tempo: \tBFSMed~ms (IC95 [\tBFSInf; \tBFSSup]~ms).
+
+\paragraph{DFS --- $O(n+m)$.} A DFS iterativa (pilha explícita, para não estourar a recursão) também alcança todos os vértices. A árvore de busca tem profundidade \dfsProf: a DFS segue caminhos longos e quase não volta, ao contrário da BFS, cuja árvore tem profundidade \bfsExc. Tempo: \tDFSMed~ms (IC95 [\tDFSInf; \tDFSSup]~ms).
+
+\paragraph{Euler --- $O(n+m)$.} Um grafo não direcionado conexo é euleriano se todos os graus são pares, e semi-euleriano se exatamente dois são ímpares. Aqui \eulerImpares{} vértices têm grau ímpar, então o grafo \textbf{não é euleriano nem semi-euleriano}. O algoritmo de Hierholzer, implementado para os casos positivos, foi validado nos testes (circuito em $K_5$). Tempo da verificação: \tEulerMed~ms.
+
+\paragraph{Dijkstra --- $O((n+m)\log n)$.} Com peso unitário, o Dijkstra com heap binário reproduz exatamente as distâncias da BFS (validação). Com o peso de \emph{embeddedness}, a maior distância a partir da fonte é \dijDistMax. Os caminhos mínimos ponderados têm em média \dijSaltosMedios{} saltos (máximo \dijSaltosMax): preferem várias arestas fortes a poucas arestas-ponte, o que confirma que o peso muda a geometria da rede. Tempo: \tDijkstraMed~ms (IC95 [\tDijkstraInf; \tDijkstraSup]~ms).
+
+\paragraph{Bellman-Ford --- $O(n \cdot m)$.} Com os mesmos pesos, o resultado é idêntico ao Dijkstra. Graças à parada antecipada, o algoritmo convergiu em \bfRodadas{} rodadas, contra $n - 1 = 9.916$ no pior caso, então o custo efetivo é $O(k \cdot m)$ com $k = \bfRodadas$. A aplicabilidade é limitada: como todos os pesos são positivos, o Dijkstra basta. Num grafo não direcionado, uma única aresta negativa já forma um ciclo negativo ($u \to v \to u$). Para demonstrar, atribuímos $-0{,}5$ a uma aresta de um subgrafo com \bfNegN{} vértices: o algoritmo executou as \bfNegRodadas{} rodadas e detectou o ciclo. Tempo no grafo completo: \tBellmanFordMed~ms, 2,6 vezes o do Dijkstra.
+
+\paragraph{Floyd-Warshall --- $O(n^3)$.}\label{sec:fw} No grafo completo seriam $\approx \fwOps \times 10^{12}$ atualizações e uma matriz de \fwMemoriaMB~MB, por isso rodamos o algoritmo em subgrafos BFS (Tabela~\ref{tab:floyd}, Figura~\ref{fig:fw}). Implementamos duas versões: uma vetorizada em numpy, com $n$ atualizações $O(n^2)$ feitas em C, e uma em Python puro, com três laços. Num subgrafo de \fwValN{} vértices, as duas coincidem com o Dijkstra executado a partir de todas as fontes. O ajuste $c\,n^3$ tem $R^2 = \fwRdoisNumpy$ (numpy) e \fwRdoisPython{} (Python). Para $n = 200$, a versão pura é \fwRazao{} vezes mais lenta. Extrapolando para $n = \nV$, a versão numpy levaria $\approx$ \fwEstNumpyMin~min e a versão pura $\approx$ \fwEstPythonH~h, além dos 750~MB de memória. Para todos os pares, $n$ execuções de Dijkstra ou BFS saem muito mais baratas num grafo esparso.
+
+\input{tabelas/floyd.tex}
+
+\paragraph{Tarjan --- $O(n+m)$.} A versão iterativa do algoritmo de low-link~\cite{tarjan1972} encontrou \nPontes{} pontes e \nArticulacoes{} pontos de articulação, os mesmos conjuntos que o networkx. Das pontes, \pontesFolha{} ligam um vértice de grau 1 ao resto, de modo que a rede quase não tem pontes "estruturais": é 2-conexa no núcleo. Tempo: \tTarjanMed~ms.
+
+\paragraph{Prim e Kruskal --- $O(m \log n)$ e $O(m \log m)$.} Com o peso de \emph{embeddedness}, Prim (heap, versão \emph{lazy}) e Kruskal (união-busca com compressão de caminho e união por posto) produzem árvores geradoras mínimas de mesmo peso total, \agmPeso, igual ao do igraph, com \nV{} $-$ 1 arestas. Só \agmFracUm\% das arestas da árvore têm peso 1: a árvore usa os laços fortes sempre que pode. Tempos: Prim \tPrimMed~ms e Kruskal \tKruskalMed~ms. O Prim fica mais lento porque faz um \texttt{heappush} por aresta examinada, enquanto o Kruskal faz uma única ordenação, em C.
+
+\input{tabelas/escala.tex}
+\input{tabelas/ajustes.tex}
+
+\begin{figure*}[!htb]
+\centering
+\includegraphics[width=\textwidth]{figuras/p2_escala_tempos.pdf}
+\caption{Tempo médio (ms, barras = IC de 95\% t-Student, 10 repetições) em função do número de vértices dos subgrafos BFS; tracejado: ajuste $c \cdot f(n,m)$ da Tabela~\ref{tab:ajustes}.}
+\label{fig:escala}
+\end{figure*}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.9\linewidth]{figuras/p2_floyd_warshall.pdf}
+\caption{Floyd-Warshall: tempo (s, escala log) $\times$ $n$ para as versões numpy e Python puro, com ajustes $c\,n^3$.}
+\label{fig:fw}
+\end{figure}
+
+\paragraph{Complexidade observada.} Todos os ajustes da Tabela~\ref{tab:ajustes} têm $R^2 \geq \rdoisMin$: os tempos crescem como a complexidade teórica prevê. Há três desvios a explicar. (i) A razão $m/n$ cresce de 9,3 para 17,5 entre os subgrafos, então medir só em função de $n$ superestimaria a curvatura; por isso o eixo teórico usa $f(n,m)$. No ajuste $an + bm$, o coeficiente de $n$ sai próximo de zero, ou seja, o custo é dominado pelas arestas. (ii) No Bellman-Ford, usamos $f = k \cdot 2m$, com o número de rodadas medido em cada subgrafo; com $f = n \cdot m$, o ajuste não teria sentido. (iii) Em Python puro, a constante por operação é alta (cerca de $10^{-4}$~ms por vértice + aresta na BFS), então mesmo algoritmos lineares levam dezenas de milissegundos. A ordem relativa é coerente com a teoria: BFS $\approx$ DFS $\approx$ Euler $<$ Tarjan $<$ Dijkstra $<$ Kruskal $<$ Bellman-Ford $<$ Prim. % INTERPRETAÇÃO (iii)
+
+\subsection{Parte III --- Redes complexas}
+\subsubsection{A rede é small-world?}
+\textbf{Sim.} A Tabela~\ref{tab:smallworld} e a Figura~\ref{fig:sw} mostram que o caminho médio do Orkut ($L = \swL$) é só \swLambdaER{} vezes o de um $G(n,m)$ com os mesmos $n$ e $m$ ($L_r = \swLrandER$). Já a clusterização ($C = \swC$) é \swGammaER{} vezes maior ($C_r = \swCrandER$, próximo do valor analítico $\langle k \rangle/n = \swCrandAnal$). Resulta $\sigma = \swSigmaER \gg 1$. O teste mais exigente é contra o modelo de configuração, que preserva os graus e, portanto, os hubs. Mesmo assim, $C$ continua \swGammaConf{} vezes maior ($C_r = \swCrandConf$) e $L/L_r = \swLambdaConf$, com $\sigma = \swSigmaConf$. Os dois nulos levam à mesma conclusão, mas com magnitudes diferentes: a heterogeneidade dos graus triplica a clusterização esperada ($C_{\text{conf}} \approx 3\,C_{\text{ER}}$), mas o valor ainda fica \swGammaConf{} vezes abaixo do observado. Esse restante vem da estrutura comunitária, que nenhum dos nulos reproduz. O valor $\omega = \swOmegaConf$, ligeiramente positivo, indica que a rede está mais perto do lado aleatório (caminhos curtos) do que do reticulado ($C_{\text{ret}} = \swClatt$). Na prática, a informação se espalha em poucos passos entre grupos, enquanto cada grupo permanece coeso. % INTERPRETAÇÃO
+
+\input{tabelas/smallworld.tex}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=\linewidth]{figuras/p3_small_world.pdf}
+\caption{Clusterização média (escala log) e caminho médio do Orkut G27 e das referências ER e de configuração (média das instâncias).}
+\label{fig:sw}
+\end{figure}
+
+\subsubsection{A distribuição de graus segue lei de potência?}\label{sec:lp}
+\textbf{No Orkut completo, sim, na cauda. No subgrafo amostrado, não.} A Tabela~\ref{tab:powerlaw} e a Figura~\ref{fig:powerlaw} trazem os resultados. No grafo completo, a MLE dá $\gamma = \plGammaFull \pm \plErroFull$ para $k \geq \plKminFull$ (\plCaudaFull{} vértices na cauda, KS $= \plKsFull$). A regressão na CCDF chega a um valor quase igual (\plCcdfFull, $R^2 = \plCcdfRdoisFull$), e a lei de potência vence a exponencial com folga (Vuong $z = \plVuongFull$). A CCDF é aproximadamente reta por mais de duas décadas, de $k \approx 170$ a $k \approx 30.000$. As regressões em $P(k)$ dão valores menores (bruta \plBrutaFull; bins \plBinsFull) porque incluem o platô de graus baixos ($k < 100$), onde a lei de potência não vale; isso ilustra por que a regressão log-log isolada não é confiável~\cite{clauset2009}.
+
+No subgrafo, os métodos divergem entre si: a regressão bruta dá \plBrutaSub, a de bins \plBinsSub{} ($R^2 = \plBinsRdoisSub$) e a MLE \plGammaSub{} numa cauda de só \plCaudaSubx{} vértices. O teste de Vuong favorece a \emph{exponencial} ($z = \plVuongSub$). A Poisson, porém, também é rejeitada (KS $= \plKsPoissonSub$): a distribuição é heterogênea, mas com a cauda cortada. A Figura~\ref{fig:grauorig} mostra a causa: os hubs do Orkut perdem as amizades que saem da amostra. Isso é um efeito de amostragem conhecido, pois subgrafos de redes livres de escala em geral não são livres de escala~\cite{stumpf2005}. Para o Orkut real, a resposta é sim, com $\gamma \approx 3$: poucos usuários têm milhares de amigos e a maioria tem dezenas.
+
+\begin{figure*}[!htb]
+\centering
+\includegraphics[width=0.92\textwidth]{figuras/p3_lei_potencia.pdf}
+\caption{Lei de potência no subgrafo (linha superior) e no Orkut completo (linha inferior). Esquerda: $P(k)$ bruto (cinza), em bins logarítmicos (azul), ajuste MLE para $k \geq k_{\min}$ (vermelho) e Poisson com $\lambda = \langle k \rangle$ (verde). Direita: CCDF empírica, lei de potência ajustada e Poisson.}
+\label{fig:powerlaw}
+\end{figure*}
+
+\input{tabelas/powerlaw.tex}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.75\linewidth]{figuras/p3_grau_original_vs_subgrafo.pdf}
+\caption{Grau no Orkut completo $\times$ grau no subgrafo (log-log); tracejado: $y = x$.}
+\label{fig:grauorig}
+\end{figure}
+
+\subsubsection{A rede é robusta?}
+\textbf{Sim, tanto a falhas aleatórias quanto a ataques por grau. É moderadamente vulnerável a ataques por betweenness.} A Tabela~\ref{tab:robustez} e a Figura~\ref{fig:rob} comparam as estratégias. Com \robR{} vértices removidos ao acaso, a maior componente mantém $S = \robSaleat$ dos vértices restantes (IC95 [\robSaleatInf; \robSaleatSup], Tabela~\ref{tab:robustezic}), formam-se em média \robCaleat{} componentes (só vértices isolados) e $L$ sobe \robLaumAleat\%. O ataque aos de maior grau é quase igual: $S = \robSgrau$, $c = \robCgrau$, dentro da variação aleatória. Ele só alonga mais os caminhos ($L = \robLgrau$, $+\robLaumGrau\%$; $E$ cai de \robEbase{} para \robEgrau). O ataque por betweenness é o mais danoso: $S = \robSbet$, \robCbet{} componentes (\robCbetRazao{} vezes a média aleatória), $L = \robLbet$ ($+\robLaumBet\%$) e $E = \robEbet$. O PageRank fica entre os dois. A Figura~\ref{fig:curvas} estende a remoção até 50\%. Nas três estratégias, a maior componente encolhe quase só pelos vértices removidos (as curvas de $S$ ficam próximas da reta $1 - f$), mas os ataques, principalmente por betweenness, separam mais componentes desde o início.
+
+Esse comportamento é o contrário do esperado para uma rede livre de escala ideal~\cite{albert2000}, em que o ataque aos hubs é devastador. Aqui os hubs estão no núcleo denso das comunidades, onde há muitos caminhos alternativos (5\% dos vértices de maior grau tocam \topCincoPct\% das arestas, mas quase todas as arestas deles são redundantes). Os vértices críticos são os que ligam comunidades. % INTERPRETAÇÃO
+
+\input{tabelas/robustez.tex}
+\input{tabelas/robustezic.tex}
+
+\begin{figure*}[!htb]
+\centering
+\includegraphics[width=\textwidth]{figuras/p3_robustez_5pct.pdf}
+\caption{Robustez com $r = \robR$ (5\%): distribuição das 30 remoções aleatórias (boxplot; triângulo = média) e valor de cada ataque (grau, betweenness, PageRank) para as métricas A--D. Linha pontilhada: grafo intacto.}
+\label{fig:rob}
+\end{figure*}
+
+\begin{figure*}[!htb]
+\centering
+\includegraphics[width=0.85\textwidth]{figuras/p3_robustez_curvas.pdf}
+\caption{Tamanho da maior componente (fração do $n$ original) e número de componentes (escala log) em função da fração removida; aleatória = média de 3 repetições. Linha pontilhada: 5\%.}
+\label{fig:curvas}
+\end{figure*}
+
+\subsubsection{Qual foi a descoberta mais interessante?}
+\textbf{Quem sustenta esta região do Orkut não são os hubs, e sim os vértices-ponte entre comunidades.} Quatro resultados independentes apontam na mesma direção. % INTERPRETAÇÃO — reescrever com suas palavras
+(i) \fracIntraComunidade\% das arestas ligam usuários que compartilham pelo menos uma comunidade, e a clusterização é \swGammaConf{} vezes maior que a de um aleatório com os mesmos graus: a estrutura vem das comunidades, não da distribuição de graus.
+(ii) A Tabela~\ref{tab:hubs} mostra que os 10 maiores hubs têm betweenness baixa e clusterização local de 0,16 a 0,27, ou seja, estão dentro de grupos densos. As exceções são os vértices 177048 (clusterização 0,056) e 24553 (5 comunidades), com betweenness de 7 a 11 vezes a mediana dos outros hubs.
+(iii) Os \fracMultiCom\% de vértices que pertencem a duas ou mais comunidades têm betweenness média \betRazaoCom{} vezes maior (Figura~\ref{fig:descoberta}, direita; Spearman entre nº de comunidades e betweenness $= \spComBet$). São eles que o ataque por betweenness remove, e por isso ele fragmenta a rede \robCbetRazao{} vezes mais que o acaso, enquanto o ataque por grau não se distingue do acaso.
+(iv) A clusterização cai pouco com o grau ($C(k) \sim k^{-\ckExpoente}$, $R^2 = \ckRdois$; Figura~\ref{fig:descoberta}, esquerda), longe do $k^{-1}$ de redes hierárquicas~\cite{ravasz2003}: hubs e vértices comuns estão igualmente imersos em grupos.
+Na prática, para conectar ou desconectar grupos no Orkut, o que importa são as pessoas que transitam entre comunidades, e não as mais populares, em linha com os laços fracos de \citet{granovetter1973}. Uma segunda descoberta, metodológica, é que a lei de potência do Orkut ($\gamma \approx \plGammaFull$) não sobrevive à amostragem por comunidades, embora $C$ e $L$ sobrevivam.
+
+\input{tabelas/hubs.tex}
+
+\begin{figure*}[!htb]
+\centering
+\includegraphics[width=0.85\textwidth]{figuras/p3_descoberta.pdf}
+\caption{Esquerda: clusterização média $C(k)$ por grau (log-log) e ajuste para $k \geq 5$. Direita: betweenness por número de comunidades a que o vértice pertence (boxplot sem \emph{outliers}).}
+\label{fig:descoberta}
+\end{figure*}
+
+\subsubsection{Extra: comparação com modelos clássicos}
+A Tabela~\ref{tab:modelos} e a Figura~\ref{fig:modelos} comparam o Orkut G27 com geradores próprios de Erdős–Rényi~\cite{erdos1959}, Barabási–Albert~\cite{barabasi1999} ($m_0 = 17$) e Watts–Strogatz~\cite{watts1998} ($k = 34$, $p = 0{,}1$), todos com $n = \nV$ e $m$ aproximado. Nenhum modelo reproduz as três propriedades ao mesmo tempo. O ER tem $L$ curto, mas $C$ cem vezes menor e graus concentrados (máximo \erGrauMax). O BA gera cauda de potência ($\gamma = \baGamma$, grau máximo \baGrauMax), mas $C = \baC$. O WS reproduz $C$ alto (\wsC) e $L$ curto (\wsL), mas tem graus quase constantes (máximo \wsGrauMax). A CCDF do Orkut G27 fica entre a do ER e a do BA: mais heterogênea que a Poisson, sem chegar à cauda do BA. Ela se aproximaria do BA no grafo completo, cujo $\gamma \approx 3$ é o do modelo. O Orkut combina a clusterização do WS com uma heterogeneidade de graus intermediária, e o que falta aos três modelos é justamente a estrutura comunitária sobreposta. % INTERPRETAÇÃO
+
+\input{tabelas/modelos.tex}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=0.9\linewidth]{figuras/p3_modelos_ccdf.pdf}
+\caption{CCDF de graus (log-log) do Orkut G27 e dos modelos ER, BA e WS com mesmos $n$ e $m$ aproximado.}
+\label{fig:modelos}
+\end{figure}
+
+% =====================================================================
+\section{Discussão crítica}\label{sec:discussao}
+\paragraph{Tratamento.} O subgrafo é uma região coesa do Orkut, não uma amostra representativa da rede inteira. Por construção, isso favorece clusterização alta, conectividade e robustez, e corta a cauda de graus (Figura~\ref{fig:grauorig}). As conclusões sobre \emph{small-world}, robustez e descoberta valem para regiões comunitárias do Orkut. A da lei de potência foi tirada do grafo completo justamente por esse motivo. Outra semente, ou uma expansão BFS/\emph{snowball}, produziria outro subgrafo; não medimos a variabilidade entre sementes.
+
+\paragraph{Aproximações.} As medidas da Parte~I são exatas. Já $L$ dos modelos nulos (1.000 fontes), $L$ e $E$ na robustez (200 fontes) e o betweenness (1.000 fontes) são estimativas. O desvio-padrão de $L_r$ entre instâncias ER foi da ordem de $10^{-3}$, e o $L$ do grafo intacto estimado com 200 fontes (\robLbase) difere do exato (\caminhoMedio) em 0,4\%, o que basta para as comparações feitas. Os modelos nulos usaram poucas instâncias (5 e 3).
+
+\paragraph{Pesos.} O peso de \emph{embeddedness} é uma escolha nossa, derivada da topologia, e não um dado do SNAP. Ele dá sentido a Dijkstra, Bellman-Ford, Floyd-Warshall e à árvore geradora mínima, mas não representa intensidade de interação real.
+
+\paragraph{Testes que faltaram.} Não testamos a lei de potência contra a lognormal (alternativa comum para redes sociais) nem estimamos o p-valor da lei de potência por \emph{bootstrap}~\cite{clauset2009}. A robustez usou ranking fixo, sem recalcular a centralidade após cada remoção (ataque adaptativo), o que tenderia a ser ainda mais danoso.
+
+\paragraph{Dependência de máquina.} Os tempos absolutos dependem do processador, do Python e da carga do sistema. O que se transfere para outras máquinas são as razões entre algoritmos e os expoentes de crescimento. As medições foram feitas no ambiente indicado na Seção~\ref{sec:metodo}.
+
+\paragraph{Origem dos dados.} A rede é de 2006--2007 e foi obtida por \emph{crawling}~\cite{mislove2007}, o que pode sub-representar usuários pouco conectados. As comunidades são grupos declarados pelos usuários, não comunidades detectadas por algoritmo.
+
+% =====================================================================
+\section{Conclusão}
+Analisamos o grafo G27 (com-Orkut) a partir de uma auditoria completa do arquivo bruto e de uma redução por comunidades que preserva a estrutura local. A LCC de \nV{} vértices é esparsa, mas muito agrupada ($C = \clusterMedia$), e tem caminhos curtos ($L = \caminhoMedio$, diâmetro \diametro). Implementamos e validamos os nove algoritmos da Parte~II; seus tempos acompanham a complexidade teórica. A rede é \emph{small-world} contra os dois nulos. O Orkut completo segue uma lei de potência com $\gamma \approx \plGammaFull$, que a amostragem apaga. A rede resiste a falhas e a ataques por grau, mas é mais sensível à remoção de quem liga comunidades, e essa é a descoberta central do trabalho. Como trabalhos futuros, propomos repetir a análise com várias sementes e com amostragem BFS/\emph{snowball}, testar ataques adaptativos, comparar a cauda com a lognormal e usar algoritmos de detecção de comunidades para verificar se os vértices de alta betweenness coincidem com as fronteiras detectadas.
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{referencias}
+
+\end{document}

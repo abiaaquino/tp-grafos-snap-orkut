@@ -91,6 +91,13 @@
       "nº comunidades": 5
     }
   ],
+  "r": 496,
+  "sobreposicao_top_r_grau_betweenness": 147,
+  "frac_multicom_top_r_grau": 0.7258064516129032,
+  "frac_multicom_top_r_betweenness": 0.532258064516129,
+  "clusterizacao_media_top_r_grau": 0.304729629871609,
+  "clusterizacao_media_top_r_betweenness": 0.19537384840490407,
+  "razao_betweenness_hubs_top10_sobre_media": 15.872864766435255,
   "frac_arestas_intra_comunidade": 0.8742135826033803,
   "frac_vertices_em_mais_de_1_comunidade": 0.2604618332156902,
   "spearman_grau_vs_clusterizacao": -0.06184511165499812,

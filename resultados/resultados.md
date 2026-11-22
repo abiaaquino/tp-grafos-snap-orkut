@@ -14,18 +14,18 @@ Máquina: Intel(R) Xeon(R) Processor @ 2.10GHz (2 núcleos lógicos), Python 3.1
 - Tarjan: 138 pontes e 136 pontos de articulação (confere com networkx: True)
 - Dijkstra com peso unitário = BFS: True; Bellman-Ford = Dijkstra: True (8 rodadas de 9,916 possíveis)
 - AGM: Prim = Kruskal = 1183.4867 (igraph confere: True)
-- Floyd-Warshall: validado (numpy = Python = Dijkstra) em n = 150; no grafo completo exigiria 750 MB e ~0.4 h (numpy) ou ~0.33 dias (Python puro)
+- Floyd-Warshall: validado (numpy = Python = Dijkstra) em n = 150; no grafo completo exigiria 787 MB e ~0.5 h (numpy) ou ~0.32 dias (Python puro)
 
 | Algoritmo | Complexidade | média (ms) | DP (ms) | IC95 (ms) | método |
 |---|---|---|---|---|---|
-| BFS | O(n+m) | 14.545 | 2.606 | [13.613; 15.478] | Normal (z) |
-| DFS | O(n+m) | 13.764 | 1.233 | [13.323; 14.206] | Normal (z) |
-| Euler (verificação) | O(n+m) | 14.448 | 0.708 | [14.194; 14.701] | Normal (z) |
-| Dijkstra | O((n+m) log n) | 62.274 | 7.316 | [59.656; 64.892] | Normal (z) |
-| Bellman-Ford | O(n·m) [efetivo O(k·m)] | 161.381 | 10.044 | [157.787; 164.975] | Normal (z) |
-| Tarjan (pontes/articulações) | O(n+m) | 31.971 | 1.577 | [31.407; 32.536] | Normal (z) |
-| Prim | O(m log n) | 259.642 | 7.970 | [256.790; 262.495] | Normal (z) |
-| Kruskal | O(m log m) | 125.872 | 11.431 | [121.781; 129.962] | Normal (z) |
+| BFS | O(n+m) | 13.140 | 0.391 | [13.001; 13.280] | Normal (z) |
+| DFS | O(n+m) | 15.236 | 3.997 | [13.806; 16.666] | Normal (z) |
+| Euler (verificação) | O(n+m) | 14.430 | 0.492 | [14.254; 14.607] | Normal (z) |
+| Dijkstra | O((n+m) log n) | 62.806 | 9.205 | [59.512; 66.100] | Normal (z) |
+| Bellman-Ford | O(n·m) [efetivo O(k·m)] | 153.392 | 10.309 | [149.702; 157.081] | Normal (z) |
+| Tarjan (pontes/articulações) | O(n+m) | 31.839 | 2.245 | [31.035; 32.642] | Normal (z) |
+| Prim | O(m log n) | 263.183 | 16.791 | [257.174; 269.191] | Normal (z) |
+| Kruskal | O(m log m) | 109.479 | 6.055 | [107.312; 111.646] | Normal (z) |
 
 ## Parte III — redes complexas
 
@@ -46,4 +46,4 @@ Máquina: Intel(R) Xeon(R) Processor @ 2.10GHz (2 núcleos lógicos), Python 3.1
 
 ## Descoberta principal
 
-**Quem sustenta esta região do Orkut não são os hubs, e sim os vértices-ponte entre comunidades.** (i) A clusterização é 34× maior que a de um grafo aleatório com a MESMA sequência de graus, e 87.4% das arestas ligam membros de uma mesma comunidade: o agrupamento vem das comunidades, não dos graus. (ii) Remover os 496 vértices de maior grau (5%) deixa S = 0.9990, praticamente igual à remoção aleatória (S = 0.9992), porque os hubs ficam no núcleo denso e redundante das comunidades. (iii) Remover os 496 de maior betweenness gera 36 componentes (aleatória: 7.8) e aumenta L em 12% (grau: 7%); vértices em 2+ comunidades têm betweenness média 2.2× maior. (iv) A lei de potência existe no Orkut completo (γ = 2.96, k ≥ 168) mas some no subgrafo (cauda exponencial, γ aparente = 6.0): a amostragem por comunidades preserva clusterização e distâncias curtas, mas corta a cauda de graus — os hubs perdem as arestas que saem da amostra.
+**Os hubs não são os pontos críticos desta região do Orkut: eles ficam no núcleo redundante onde as comunidades se sobrepõem, e quem segura a periferia são outros vértices.** (i) A clusterização é 34× a de um aleatório com a MESMA sequência de graus e 87.4% das arestas ligam membros de uma mesma comunidade: o agrupamento vem das comunidades. (ii) 73% dos 496 vértices de maior grau pertencem a 2+ comunidades (média geral: 26%), ou seja, os hubs estão na zona de sobreposição, que tem muitos caminhos alternativos; removê-los desprende só 9 vértices da LCC (aleatória: 7.4). (iii) Só 147 dos 496 vértices de maior betweenness estão também no top de grau; removê-los desprende 38 vértices (36 componentes) e alonga L em 12% (grau: 7%). Mesmo assim a rede segue muito robusta (S ≥ 0.996). (iv) A lei de potência existe no Orkut completo (γ = 2.96, k ≥ 168) mas some no subgrafo (cauda exponencial): a amostragem por comunidades preserva C e L, mas corta a cauda de graus.

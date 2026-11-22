@@ -1,0 +1,333 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{22}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Albert et~al\mbox{.}(2000)]%
+        {albert2000}
+\bibfield{author}{\bibinfo{person}{R{\'e}ka Albert}, \bibinfo{person}{Hawoong
+  Jeong}, {and} \bibinfo{person}{Albert-L{\'a}szl{\'o} Barab{\'a}si}.}
+  \bibinfo{year}{2000}\natexlab{}.
+\newblock \showarticletitle{Error and Attack Tolerance of Complex Networks}.
+\newblock \bibinfo{journal}{\emph{Nature}} \bibinfo{volume}{406},
+  \bibinfo{number}{6794} (\bibinfo{year}{2000}), \bibinfo{pages}{378--382}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1038/35019019}
+\showDOI{\tempurl}
+
+
+\bibitem[Barab{\'a}si and Albert(1999)]%
+        {barabasi1999}
+\bibfield{author}{\bibinfo{person}{Albert-L{\'a}szl{\'o} Barab{\'a}si} {and}
+  \bibinfo{person}{R{\'e}ka Albert}.} \bibinfo{year}{1999}\natexlab{}.
+\newblock \showarticletitle{Emergence of Scaling in Random Networks}.
+\newblock \bibinfo{journal}{\emph{Science}} \bibinfo{volume}{286},
+  \bibinfo{number}{5439} (\bibinfo{year}{1999}), \bibinfo{pages}{509--512}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1126/science.286.5439.509}
+\showDOI{\tempurl}
+
+
+\bibitem[Brandes(2001)]%
+        {brandes2001}
+\bibfield{author}{\bibinfo{person}{Ulrik Brandes}.}
+  \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{A Faster Algorithm for Betweenness Centrality}.
+\newblock \bibinfo{journal}{\emph{Journal of Mathematical Sociology}}
+  \bibinfo{volume}{25}, \bibinfo{number}{2} (\bibinfo{year}{2001}),
+  \bibinfo{pages}{163--177}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1080/0022250X.2001.9990249}
+\showDOI{\tempurl}
+
+
+\bibitem[Brandes and Pich(2007)]%
+        {brandes2007}
+\bibfield{author}{\bibinfo{person}{Ulrik Brandes} {and}
+  \bibinfo{person}{Christian Pich}.} \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{Centrality Estimation in Large Networks}.
+\newblock \bibinfo{journal}{\emph{International Journal of Bifurcation and
+  Chaos}} \bibinfo{volume}{17}, \bibinfo{number}{7} (\bibinfo{year}{2007}),
+  \bibinfo{pages}{2303--2318}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1142/S0218127407018403}
+\showDOI{\tempurl}
+
+
+\bibitem[Clauset et~al\mbox{.}(2009)]%
+        {clauset2009}
+\bibfield{author}{\bibinfo{person}{Aaron Clauset},
+  \bibinfo{person}{Cosma~Rohilla Shalizi}, {and} \bibinfo{person}{M.~E.~J.
+  Newman}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Power-Law Distributions in Empirical Data}.
+\newblock \bibinfo{journal}{\emph{SIAM Rev.}} \bibinfo{volume}{51},
+  \bibinfo{number}{4} (\bibinfo{year}{2009}), \bibinfo{pages}{661--703}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1137/070710111}
+\showDOI{\tempurl}
+
+
+\bibitem[Cs{\'a}rdi and Nepusz(2006)]%
+        {csardi2006}
+\bibfield{author}{\bibinfo{person}{G{\'a}bor Cs{\'a}rdi} {and}
+  \bibinfo{person}{Tam{\'a}s Nepusz}.} \bibinfo{year}{2006}\natexlab{}.
+\newblock \showarticletitle{The igraph Software Package for Complex Network
+  Research}.
+\newblock \bibinfo{journal}{\emph{InterJournal, Complex Systems}}
+  \bibinfo{volume}{1695} (\bibinfo{year}{2006}).
+\newblock
+
+
+\bibitem[Erd{\H{o}}s and R{\'e}nyi(1959)]%
+        {erdos1959}
+\bibfield{author}{\bibinfo{person}{Paul Erd{\H{o}}s} {and}
+  \bibinfo{person}{Alfr{\'e}d R{\'e}nyi}.} \bibinfo{year}{1959}\natexlab{}.
+\newblock \showarticletitle{On Random Graphs {I}}.
+\newblock \bibinfo{journal}{\emph{Publicationes Mathematicae Debrecen}}
+  \bibinfo{volume}{6} (\bibinfo{year}{1959}), \bibinfo{pages}{290--297}.
+\newblock
+
+
+\bibitem[Granovetter(1973)]%
+        {granovetter1973}
+\bibfield{author}{\bibinfo{person}{Mark~S. Granovetter}.}
+  \bibinfo{year}{1973}\natexlab{}.
+\newblock \showarticletitle{The Strength of Weak Ties}.
+\newblock \bibinfo{journal}{\emph{Amer. J. Sociology}} \bibinfo{volume}{78},
+  \bibinfo{number}{6} (\bibinfo{year}{1973}), \bibinfo{pages}{1360--1380}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1086/225469}
+\showDOI{\tempurl}
+
+
+\bibitem[Hagberg et~al\mbox{.}(2008)]%
+        {hagberg2008}
+\bibfield{author}{\bibinfo{person}{Aric~A. Hagberg}, \bibinfo{person}{Daniel~A.
+  Schult}, {and} \bibinfo{person}{Pieter~J. Swart}.}
+  \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Exploring Network Structure, Dynamics, and Function
+  using {NetworkX}}. In \bibinfo{booktitle}{\emph{Proceedings of the 7th Python
+  in Science Conference (SciPy)}}. \bibinfo{pages}{11--15}.
+\newblock
+
+
+\bibitem[Humphries and Gurney(2008)]%
+        {humphries2008}
+\bibfield{author}{\bibinfo{person}{Mark~D. Humphries} {and}
+  \bibinfo{person}{Kevin Gurney}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Network `Small-World-Ness': A Quantitative Method
+  for Determining Canonical Network Equivalence}.
+\newblock \bibinfo{journal}{\emph{PLoS ONE}} \bibinfo{volume}{3},
+  \bibinfo{number}{4} (\bibinfo{year}{2008}), \bibinfo{pages}{e0002051}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1371/journal.pone.0002051}
+\showDOI{\tempurl}
+
+
+\bibitem[Latora and Marchiori(2001)]%
+        {latora2001}
+\bibfield{author}{\bibinfo{person}{Vito Latora} {and} \bibinfo{person}{Massimo
+  Marchiori}.} \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{Efficient Behavior of Small-World Networks}.
+\newblock \bibinfo{journal}{\emph{Physical Review Letters}}
+  \bibinfo{volume}{87}, \bibinfo{number}{19} (\bibinfo{year}{2001}),
+  \bibinfo{pages}{198701}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1103/PhysRevLett.87.198701}
+\showDOI{\tempurl}
+
+
+\bibitem[Leskovec and Krevl(2014)]%
+        {snapnets}
+\bibfield{author}{\bibinfo{person}{Jure Leskovec} {and} \bibinfo{person}{Andrej
+  Krevl}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \bibinfo{title}{{SNAP Datasets}: {Stanford} Large Network Dataset
+  Collection}.
+\newblock \bibinfo{howpublished}{\url{http://snap.stanford.edu/data}}.
+\newblock
+
+
+\bibitem[Maslov and Sneppen(2002)]%
+        {maslov2002}
+\bibfield{author}{\bibinfo{person}{Sergei Maslov} {and} \bibinfo{person}{Kim
+  Sneppen}.} \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{Specificity and Stability in Topology of Protein
+  Networks}.
+\newblock \bibinfo{journal}{\emph{Science}} \bibinfo{volume}{296},
+  \bibinfo{number}{5569} (\bibinfo{year}{2002}), \bibinfo{pages}{910--913}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1126/science.1065103}
+\showDOI{\tempurl}
+
+
+\bibitem[Mislove et~al\mbox{.}(2007)]%
+        {mislove2007}
+\bibfield{author}{\bibinfo{person}{Alan Mislove}, \bibinfo{person}{Massimiliano
+  Marcon}, \bibinfo{person}{Krishna~P. Gummadi}, \bibinfo{person}{Peter
+  Druschel}, {and} \bibinfo{person}{Bobby Bhattacharjee}.}
+  \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{Measurement and Analysis of Online Social
+  Networks}. In \bibinfo{booktitle}{\emph{Proceedings of the 7th ACM SIGCOMM
+  Conference on Internet Measurement (IMC)}}. \bibinfo{publisher}{ACM},
+  \bibinfo{pages}{29--42}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1145/1298306.1298311}
+\showDOI{\tempurl}
+
+
+\bibitem[Page et~al\mbox{.}(1999)]%
+        {page1999}
+\bibfield{author}{\bibinfo{person}{Lawrence Page}, \bibinfo{person}{Sergey
+  Brin}, \bibinfo{person}{Rajeev Motwani}, {and} \bibinfo{person}{Terry
+  Winograd}.} \bibinfo{year}{1999}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{The {PageRank} Citation Ranking: Bringing
+  Order to the Web}}.
+\newblock \bibinfo{type}{{T}echnical {R}eport} 1999-66.
+  \bibinfo{institution}{Stanford InfoLab}.
+\newblock
+
+
+\bibitem[Ravasz and Barab{\'a}si(2003)]%
+        {ravasz2003}
+\bibfield{author}{\bibinfo{person}{Erzs{\'e}bet Ravasz} {and}
+  \bibinfo{person}{Albert-L{\'a}szl{\'o} Barab{\'a}si}.}
+  \bibinfo{year}{2003}\natexlab{}.
+\newblock \showarticletitle{Hierarchical Organization in Complex Networks}.
+\newblock \bibinfo{journal}{\emph{Physical Review E}} \bibinfo{volume}{67},
+  \bibinfo{number}{2} (\bibinfo{year}{2003}), \bibinfo{pages}{026112}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1103/PhysRevE.67.026112}
+\showDOI{\tempurl}
+
+
+\bibitem[Stumpf et~al\mbox{.}(2005)]%
+        {stumpf2005}
+\bibfield{author}{\bibinfo{person}{Michael P.~H. Stumpf},
+  \bibinfo{person}{Carsten Wiuf}, {and} \bibinfo{person}{Robert~M. May}.}
+  \bibinfo{year}{2005}\natexlab{}.
+\newblock \showarticletitle{Subnets of Scale-Free Networks Are Not Scale-Free:
+  Sampling Properties of Networks}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the National Academy of
+  Sciences}} \bibinfo{volume}{102}, \bibinfo{number}{12}
+  (\bibinfo{year}{2005}), \bibinfo{pages}{4221--4224}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1073/pnas.0501179102}
+\showDOI{\tempurl}
+
+
+\bibitem[Tarjan(1972)]%
+        {tarjan1972}
+\bibfield{author}{\bibinfo{person}{Robert~E. Tarjan}.}
+  \bibinfo{year}{1972}\natexlab{}.
+\newblock \showarticletitle{Depth-First Search and Linear Graph Algorithms}.
+\newblock \bibinfo{journal}{\emph{SIAM J. Comput.}} \bibinfo{volume}{1},
+  \bibinfo{number}{2} (\bibinfo{year}{1972}), \bibinfo{pages}{146--160}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1137/0201010}
+\showDOI{\tempurl}
+
+
+\bibitem[Telesford et~al\mbox{.}(2011)]%
+        {telesford2011}
+\bibfield{author}{\bibinfo{person}{Qawi~K. Telesford},
+  \bibinfo{person}{Karen~E. Joyce}, \bibinfo{person}{Satoru Hayasaka},
+  \bibinfo{person}{Jonathan~H. Burdette}, {and} \bibinfo{person}{Paul~J.
+  Laurienti}.} \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{The Ubiquity of Small-World Networks}.
+\newblock \bibinfo{journal}{\emph{Brain Connectivity}} \bibinfo{volume}{1},
+  \bibinfo{number}{5} (\bibinfo{year}{2011}), \bibinfo{pages}{367--375}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1089/brain.2011.0038}
+\showDOI{\tempurl}
+
+
+\bibitem[Vuong(1989)]%
+        {vuong1989}
+\bibfield{author}{\bibinfo{person}{Quang~H. Vuong}.}
+  \bibinfo{year}{1989}\natexlab{}.
+\newblock \showarticletitle{Likelihood Ratio Tests for Model Selection and
+  Non-Nested Hypotheses}.
+\newblock \bibinfo{journal}{\emph{Econometrica}} \bibinfo{volume}{57},
+  \bibinfo{number}{2} (\bibinfo{year}{1989}), \bibinfo{pages}{307--333}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.2307/1912557}
+\showDOI{\tempurl}
+
+
+\bibitem[Watts and Strogatz(1998)]%
+        {watts1998}
+\bibfield{author}{\bibinfo{person}{Duncan~J. Watts} {and}
+  \bibinfo{person}{Steven~H. Strogatz}.} \bibinfo{year}{1998}\natexlab{}.
+\newblock \showarticletitle{Collective Dynamics of `Small-World' Networks}.
+\newblock \bibinfo{journal}{\emph{Nature}} \bibinfo{volume}{393},
+  \bibinfo{number}{6684} (\bibinfo{year}{1998}), \bibinfo{pages}{440--442}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1038/30918}
+\showDOI{\tempurl}
+
+
+\bibitem[Yang and Leskovec(2012)]%
+        {yang2012}
+\bibfield{author}{\bibinfo{person}{Jaewon Yang} {and} \bibinfo{person}{Jure
+  Leskovec}.} \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{Defining and Evaluating Network Communities Based
+  on Ground-Truth}. In \bibinfo{booktitle}{\emph{Proceedings of the IEEE 12th
+  International Conference on Data Mining (ICDM)}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{pages}{745--754}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/ICDM.2012.138}
+\showDOI{\tempurl}
+
+
+\end{thebibliography}

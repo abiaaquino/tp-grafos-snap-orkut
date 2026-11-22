@@ -28,12 +28,12 @@
     2112,
     54
   ],
-  "segundos_distancias": 13.029368114999897,
+  "segundos_distancias": 13.391558008000004,
   "validacao_bfs_propria_20_fontes": true,
   "triangulos": 1158975,
   "clusterizacao_media": 0.37030433808576263,
   "transitividade": 0.3276221075912726,
-  "segundos_triangulos": 0.48746579900011966,
+  "segundos_triangulos": 0.49571851400000355,
   "conferencia_igraph": {
     "transitividade": 0.3276221075912726,
     "clusterizacao_media": 0.3703043380857635

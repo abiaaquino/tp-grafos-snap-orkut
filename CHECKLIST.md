@@ -35,5 +35,5 @@
 - [x] README com requisito → seção → código → saída
 - [x] Notebook executado do zero sem erros
 - [x] `resultados/valores.tex` para o relatório
-- [ ] Relatório (skill grafo-snap-relatorio)
+- [x] Relatório `relatorio/224215935.pdf` (falta preencher instituição/e-mail e revisar as interpretações)
 - [ ] Commits por etapa e push para o GitHub

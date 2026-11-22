@@ -1,0 +1,24 @@
+\begin{table}[!htb]
+\centering
+\caption{Floyd-Warshall em subgrafos BFS (pesos de \emph{embeddedness}); 10 repetições, IC de 95\% t-Student.}
+\label{tab:floyd}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrrrr}
+\toprule
+Versão & n & m & Média (ms) & DP (ms) & IC95 inf. (ms) & IC95 sup. (ms) \\
+\midrule
+(numpy) & 200 & 965 & 10,3 & 0,5 & 9,9 & 10,7 \\
+(numpy) & 400 & 3.503 & 101,6 & 8,2 & 95,7 & 107,5 \\
+(numpy) & 600 & 4.936 & 389,2 & 9,8 & 382,2 & 396,3 \\
+(numpy) & 800 & 6.637 & 909,5 & 43,9 & 878,1 & 940,9 \\
+(numpy) & 1.000 & 9.305 & 1.565,4 & 46,9 & 1.531,8 & 1.598,9 \\
+(numpy) & 1.200 & 11.807 & 3.156,6 & 177,3 & 3.029,8 & 3.283,4 \\
+(Python) & 50 & 201 & 3,8 & 0,2 & 3,7 & 3,9 \\
+(Python) & 100 & 426 & 25,6 & 1,1 & 24,8 & 26,3 \\
+(Python) & 150 & 685 & 90,1 & 6,1 & 85,7 & 94,5 \\
+(Python) & 200 & 965 & 206,9 & 3,8 & 204,2 & 209,6 \\
+(Python) & 250 & 1.304 & 453,2 & 16,6 & 441,4 & 465,1 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{table}

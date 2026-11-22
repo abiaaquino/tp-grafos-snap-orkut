@@ -389,9 +389,9 @@
   },
   "centralidades": {
     "pagerank_iteracoes": 97,
-    "pagerank_confere_igraph_maxdif": 6.384811299456339e-13,
+    "pagerank_confere_igraph_maxdif": 6.384765762965094e-13,
     "brandes_fontes": 1000,
-    "brandes_segundos": 33.755463685999985,
+    "brandes_segundos": 32.976891136000006,
     "spearman_brandes_amostrado_vs_exato": 0.9757927369337004,
     "sobreposicao_top100_amostrado_vs_exato": 0.87
   },

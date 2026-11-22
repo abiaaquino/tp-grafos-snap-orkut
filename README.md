@@ -1,5 +1,7 @@
 # TP — Analisando Grafos do SNAP · G27 **com-Orkut**
 
+**Ana Beatriz Figueiredo de Aquino** · MATA53-393366-2026.2 — Teoria dos Grafos · Instituto de Computação, UFBA
+
 - **Matrícula:** 224215935 → soma dos dígitos = 2+2+4+2+1+5+9+3+5 = **33**; `f(M) = (33 × (35 + 1)) mod 129 = 1188 mod 129 = ` **27**
 - **Grafo G27:** [com-Orkut](https://snap.stanford.edu/data/com-Orkut.html): rede social não direcionada, **3.072.441 vértices e 117.185.083 arestas**, com comunidades ground-truth (grupos criados pelos usuários).
 - *Nota:* na planilha de datasets o mesmo arquivo do SNAP pode aparecer em mais de um índice/categoria. Este trabalho usa os arquivos `com-orkut.ungraph.txt.gz` e `com-orkut.top5000.cmty.txt.gz`.
@@ -11,7 +13,9 @@ scripts/
   tratamento_orkut.py       auditoria do bruto (streaming) + redução por comunidades -> data/processed/
   graus_grafo_completo.py   distribuição de graus do Orkut COMPLETO (para a lei de potência)
   verificar_dados.py        confere data/processed contra o SNAP e o resumo (código ≠ 0 se divergir)
+  download_dados.py         baixa os brutos do SNAP e confere o tamanho em bytes
   run_all.py                roda as Partes I–III sem o notebook
+  gerar_relatorio.py        monta relatorio/ (macros, tabelas, figuras) a partir de resultados/; --compilar gera o PDF
 src/
   tratamento.py   estrutura Grafo (lista de adjacência + CSR), carga, pesos, subgrafos BFS
   algoritmos.py   BFS, DFS, componentes, Euler/Hierholzer, Dijkstra, Bellman-Ford, Floyd-Warshall
@@ -32,6 +36,7 @@ data/processed/   dataset tratado (3 MB) + resumo/log do tratamento
 figuras/          todas as figuras (PNG + PDF)
 resultados/       tabelas (CSV + .tex), json/ por etapa, resultados.json, resultados.md, valores.tex
 CHECKLIST.md      requisitos do enunciado e onde estão
+relatorio/        main.tex (artigo sigconf), referencias.bib, tabelas/, figuras/, 224215935.pdf
 ```
 
 ## Como executar
@@ -43,9 +48,8 @@ pip install -r requirements.txt
 pytest                                    # 24 testes, ~2 s
 
 # 1) Dados (só se for refazer o tratamento; data/processed já está versionado)
-#    baixe em data/raw/: https://snap.stanford.edu/data/bigdata/communities/com-orkut.ungraph.txt.gz
-#                        https://snap.stanford.edu/data/bigdata/communities/com-orkut.top5000.cmty.txt.gz
-python scripts/tratamento_orkut.py        # ~1,5 min, < 1 GB de RAM (leitura em blocos)
+python scripts/download_dados.py          # baixa os 2 arquivos do SNAP para data/raw/ e confere o tamanho
+python scripts/tratamento_orkut.py        # 1,5–2,5 min; pico de memória medido: 564 MB (leitura em blocos)
 python scripts/graus_grafo_completo.py    # ~1 min
 python scripts/verificar_dados.py
 
@@ -53,6 +57,9 @@ python scripts/verificar_dados.py
 jupyter nbconvert --to notebook --execute --inplace notebook.ipynb
 # ou
 python scripts/run_all.py                 # --rapido = poucas repetições, só para testar o fluxo
+
+# 3) Relatório (exige LaTeX com acmart; ou envie relatorio/ ao Overleaf, template WebMedia)
+python scripts/gerar_relatorio.py --compilar   # -> relatorio/224215935.pdf
 ```
 
 Os tempos publicados em `resultados/` foram medidos em Linux x86_64, Intel Xeon 2,1 GHz (2 núcleos lógicos), Python 3.13 (registrado em `resultados/resultados.md`).
@@ -110,12 +117,12 @@ Justificativa: o grafo completo inviabiliza as medidas O(n·m) e O(n³) do TP. O
 | Tarjan | 138 pontes (134 levam a folhas) e 136 pontos de articulação |
 | Bellman-Ford | converge em 8 rodadas (de 9.916 possíveis); = Dijkstra |
 | AGM (peso embeddedness) | Prim = Kruskal = igraph = 1.183,49 |
-| Floyd-Warshall no grafo inteiro | 750 MB de matriz; ~0,5 h (numpy) ou ~0,3 dia (Python puro), por extrapolação c·n³ (R² > 0,998) |
+| Floyd-Warshall no grafo inteiro | 787 MB de matriz; ~0,5 h (numpy) ou ~7,7 h (Python puro), por extrapolação c·n³ (R² > 0,998) |
 | Small-world | C/C_ER ≈ 105, L/L_ER ≈ 1,30, σ ≈ 81; contra o modelo de configuração: C/C_conf ≈ 34, σ ≈ 27 → **small-world** |
 | Lei de potência | Orkut completo: γ_MLE ≈ 2,96 (k ≥ 168), favorecida contra a exponencial (Vuong); subgrafo: cauda exponencial (corte da amostragem) |
-| Robustez (r = 496) | aleatória: S ≈ 0,999, c ≈ 7,8; ataque por grau: S = 0,999, c = 8; **ataque por betweenness: c = 36, L +12%** |
+| Robustez (r = 496) | muito robusta: aleatória desprende ~7 vértices da LCC (S ≈ 0,999); ataque por grau desprende 9 (S = 0,999); **ataque por betweenness desprende 38 (c = 36) e alonga L em 12%** |
 
-**Descoberta mais interessante:** quem sustenta esta região do Orkut não são os hubs, e sim os **vértices-ponte entre comunidades**. Remover os 5% de maior grau tem quase o mesmo efeito que remover 5% ao acaso, porque os hubs ficam no núcleo denso e redundante das comunidades. Já remover os 5% de maior betweenness, que são principalmente vértices de 2 ou mais comunidades, quebra a rede em 36 componentes e alonga os caminhos. A clusterização (34× a de um aleatório com os mesmos graus) e o fato de 87% das arestas serem intracomunidade mostram que a estrutura vem das comunidades, não da distribuição de graus. O texto completo está em `resultados/resultados.md`.
+**Descoberta mais interessante:** os hubs **não** são os pontos críticos desta região do Orkut. Eles ficam no núcleo redundante onde as comunidades se sobrepõem: 73% dos 496 vértices de maior grau pertencem a 2 ou mais comunidades, contra 26% na rede toda. Por isso, removê-los tem quase o mesmo efeito sobre a conectividade que remover vértices ao acaso. Os vértices de maior betweenness são, em sua maioria, outros (só 147 dos 496 coincidem com o top de grau), e removê-los é o ataque mais danoso, ainda que pequeno em termos absolutos. A clusterização (34× a de um aleatório com os mesmos graus) e o fato de 87% das arestas serem intracomunidade mostram que a estrutura vem das comunidades. Os números finais estão em `resultados/resultados.md`.
 
 ## Bibliotecas prontas: o que foi usado e para quê
 

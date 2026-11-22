@@ -394,7 +394,7 @@ def _floyd(ctx, reps):
     ax.legend(fontsize=7)
     salvar(fig, "p2_floyd_warshall")
     return {"validacao": valid, "medicoes": linhas, "ajustes": extra,
-            "memoria_matriz_grafo_completo_MB": N * N * 8 / 2 ** 20,
+            "memoria_matriz_grafo_completo_MB": N * N * 8 / 1e6,
             "operacoes_grafo_completo": N ** 3}
 
 
@@ -632,7 +632,16 @@ def descoberta(ctx: Contexto) -> dict:
     ck = np.array([loc[graus == k].mean() for k in ks])
     okk = (ks >= 5) & (ck > 0)
     reg = stats.linregress(np.log10(ks[okk]), np.log10(ck[okk]))
+    r = R.r_remocao(G.n)
+    top_g = np.argsort(-graus, kind="stable")[:r]
+    top_b = np.argsort(-cen["betweenness"], kind="stable")[:r]
     out = {"hubs": hubs.to_dict("records"),
+           "r": r, "sobreposicao_top_r_grau_betweenness": len(set(top_g) & set(top_b)),
+           "frac_multicom_top_r_grau": float((ncom[top_g] > 1).mean()),
+           "frac_multicom_top_r_betweenness": float((ncom[top_b] > 1).mean()),
+           "clusterizacao_media_top_r_grau": float(loc[top_g].mean()),
+           "clusterizacao_media_top_r_betweenness": float(loc[top_b].mean()),
+           "razao_betweenness_hubs_top10_sobre_media": float(cen["betweenness"][top].mean() / cen["betweenness"].mean()),
            "frac_arestas_intra_comunidade": float(intra.mean()),
            "frac_vertices_em_mais_de_1_comunidade": float((ncom > 1).mean()),
            "spearman_grau_vs_clusterizacao": sp(graus, loc),
@@ -761,6 +770,17 @@ def consolidar() -> dict:
         "robLaleat": (rb["aleatoria_ic"]["L"]["media"], 3), "robLgrau": (rb["ataques"]["Grau"]["L"], 3),
         "robLbet": (rb["ataques"]["Betweenness"]["L"], 3),
         "fracIntraComunidade": (100 * ds["frac_arestas_intra_comunidade"], 1),
+        "robForaAleat": (np.mean([x["n_restante"] - x["maior"] for x in rb["aleatoria_reps"]]), 1),
+        "robForaGrau": rb["ataques"]["Grau"]["n_restante"] - rb["ataques"]["Grau"]["maior"],
+        "robForaBet": rb["ataques"]["Betweenness"]["n_restante"] - rb["ataques"]["Betweenness"]["maior"],
+        "robForaPr": rb["ataques"]["PageRank"]["n_restante"] - rb["ataques"]["PageRank"]["maior"],
+        "sobreposicaoTopR": ds["sobreposicao_top_r_grau_betweenness"],
+        "sobreposicaoTopRPct": (100 * ds["sobreposicao_top_r_grau_betweenness"] / ds["r"], 0),
+        "multicomTopGrau": (100 * ds["frac_multicom_top_r_grau"], 0),
+        "multicomTopBet": (100 * ds["frac_multicom_top_r_betweenness"], 0),
+        "clusTopGrau": (ds["clusterizacao_media_top_r_grau"], 3),
+        "clusTopBet": (ds["clusterizacao_media_top_r_betweenness"], 3),
+        "betHubsRazao": (ds["razao_betweenness_hubs_top10_sobre_media"], 0),
         "ckExpoente": (ds["C_de_k_expoente"], 2),
     }
     escrever_macros(v)
@@ -806,18 +826,22 @@ def consolidar() -> dict:
            "### Modelos clássicos", "", "| Modelo | m | grau máx. | C | L | γ MLE | cauda (Vuong) |", "|---|---|---|---|---|---|---|"]
     md += [f"| {r['Modelo']} | {r['m']:,} | {r['grau máx.']} | {r['C']:.4f} | {r['L']:.3f} | {r['γ MLE']:.2f} | {r['cauda (Vuong)']} |" for r in mo["tabela"]]
     ra, at = rb["aleatoria_ic"], rb["ataques"]
+    fora = {k: x["n_restante"] - x["maior"] for k, x in at.items()}
+    fora_al = float(np.mean([x["n_restante"] - x["maior"] for x in rb["aleatoria_reps"]]))
     md += ["", "## Descoberta principal", "",
-           "**Quem sustenta esta região do Orkut não são os hubs, e sim os vértices-ponte entre comunidades.** "
-           f"(i) A clusterização é {cf['gamma_C_sobre_Crand']:.0f}× maior que a de um grafo aleatório com a MESMA sequência de graus, "
-           f"e {100*ds['frac_arestas_intra_comunidade']:.1f}% das arestas ligam membros de uma mesma comunidade: o agrupamento vem das comunidades, não dos graus. "
-           f"(ii) Remover os {rb['r']} vértices de maior grau (5%) deixa S = {at['Grau']['S']:.4f}, praticamente igual à remoção aleatória "
-           f"(S = {ra['S']['media']:.4f}), porque os hubs ficam no núcleo denso e redundante das comunidades. "
-           f"(iii) Remover os {rb['r']} de maior betweenness gera {at['Betweenness']['c']} componentes (aleatória: {ra['c']['media']:.1f}) e aumenta L em "
-           f"{100*(at['Betweenness']['L']/rb['base']['L']-1):.0f}% (grau: {100*(at['Grau']['L']/rb['base']['L']-1):.0f}%); vértices em 2+ comunidades têm betweenness média "
-           f"{ds['betweenness_media_2mais_comunidades']/ds['betweenness_media_1_comunidade']:.1f}× maior. "
+           "**Os hubs não são os pontos críticos desta região do Orkut: eles ficam no núcleo redundante onde as comunidades "
+           "se sobrepõem, e quem segura a periferia são outros vértices.** "
+           f"(i) A clusterização é {cf['gamma_C_sobre_Crand']:.0f}× a de um aleatório com a MESMA sequência de graus e "
+           f"{100*ds['frac_arestas_intra_comunidade']:.1f}% das arestas ligam membros de uma mesma comunidade: o agrupamento vem das comunidades. "
+           f"(ii) {100*ds['frac_multicom_top_r_grau']:.0f}% dos {ds['r']} vértices de maior grau pertencem a 2+ comunidades "
+           f"(média geral: {100*ds['frac_vertices_em_mais_de_1_comunidade']:.0f}%), ou seja, os hubs estão na zona de sobreposição, que tem muitos caminhos alternativos; "
+           f"removê-los desprende só {fora['Grau']} vértices da LCC (aleatória: {fora_al:.1f}). "
+           f"(iii) Só {ds['sobreposicao_top_r_grau_betweenness']} dos {ds['r']} vértices de maior betweenness estão também no top de grau; "
+           f"removê-los desprende {fora['Betweenness']} vértices ({at['Betweenness']['c']} componentes) e alonga L em "
+           f"{100*(at['Betweenness']['L']/rb['base']['L']-1):.0f}% (grau: {100*(at['Grau']['L']/rb['base']['L']-1):.0f}%). "
+           f"Mesmo assim a rede segue muito robusta (S ≥ {min(x['S'] for x in at.values()):.3f}). "
            f"(iv) A lei de potência existe no Orkut completo (γ = {full['mle']['gamma']:.2f}, k ≥ {full['mle']['kmin']:.0f}) mas some no subgrafo "
-           f"(cauda exponencial, γ aparente = {sub['mle']['gamma']:.1f}): a amostragem por comunidades preserva clusterização e distâncias curtas, "
-           "mas corta a cauda de graus — os hubs perdem as arestas que saem da amostra."]
+           f"(cauda exponencial): a amostragem por comunidades preserva C e L, mas corta a cauda de graus."]
     (RES / "resultados.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     return enx
 
